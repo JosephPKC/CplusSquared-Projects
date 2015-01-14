@@ -1,4 +1,6 @@
 #include <iostream>
+using namespace std;
+
 struct Node{
     int item;
     Node* next;
@@ -6,39 +8,35 @@ struct Node{
     Node(int item, Node* next){this->item = item; this->next = next;}
 };
 
-using namespace std;
 void insertHead(Node*& head, int item);
 void insertAfter(Node* afterThis, int item);
 void deleteNode(Node*& head, Node* deleteThis);
 Node* search(Node* head, int item);
 void print(Node* head);
+Node* previousNode(Node* head, Node* beforeThis);
+Node* removeNode(Node*& head, Node* removeThis);
 
 int main()
 {
-    Node* head = new Node(1,NULL);
-    insertHead(head,1515);
-    insertAfter(head,0);
-    cout << "InsertHead and InsertAfter" << endl;
+    Node* head = NULL;
+    for(int i = 0; i < 10; i++) insertHead(head,i);
+    cout << "The List: " << endl;
     print(head);
-    cout << "Search for 0 and Search for 123124124124214" << endl;
-    Node* found = search(head,0);
-    cout << "0 Search: ";
-    if(found) cout << found->item << endl;
-    else cout << "NOT FOUND" << endl;
-    found = search(head,123124124124214);
-    cout << "123124124124214 Search: ";
-    if(found) cout << found->item << endl;
-    else cout << "NOT FOUND" << endl;
-
-    Node* temp = head;
-    temp = temp->next;
-    cout << "TEMP: " << temp->item << endl;
-    cout << "Delete @ Temp" << endl;
-    deleteNode(head,temp);
+    cout << "Insert After Head: " << endl;
+    insertAfter(head,20);
     print(head);
-    cout << "Delete @ Head" << endl;
+    cout << "Insert After Middle: " << endl;
+    Node* temp = head->next->next->next->next; //(5)
+    insertAfter(temp,50);
+    print(head);
+    cout << "Remove: " << endl;
+    Node* temp2 = removeNode(head,temp);
+    cout << temp2->item << endl;
+    cout << "Delete: " << endl;
     deleteNode(head,head);
     print(head);
+
+
 
     return 0;
 }
@@ -57,31 +55,36 @@ void insertHead(Node*& head, int item){
 }
 
 void insertAfter(Node* afterThis, int item){
-    Node* temp = afterThis->next;
-    Node* newNode = new Node(item,temp);
+    Node* newNode = new Node(item,afterThis->next);
     afterThis->next = newNode;
 }
 
-void deleteNode(Node*& head, Node* deleteThis){
-    if(deleteThis == head){
-        Node* temp = head->next;
-        delete[] deleteThis;
-        head = temp;
+Node* removeNode(Node*& head, Node* removeThis){
+    if(removeThis == head){
+        Node* temp = head;
+        head = head->next;
+        return temp;
     }
-    else{
-        Node* walker = head;
-        while(walker){
-            Node* temp = walker;
-            walker = walker->next;
-            if(walker == deleteThis){
-                walker = temp;
-                break;
-            }
+    Node* before = previousNode(head,removeThis);
+    Node* temp = removeThis;
+    before->next = removeThis->next;
+    return temp;
+}
+
+Node* previousNode(Node* head, Node* beforeThis){
+    if(beforeThis == head) return NULL;
+    Node* walker = head;
+    while(walker){
+        Node* temp = walker;
+        walker = walker->next;
+        if(walker == beforeThis){
+            return temp;
         }
-        Node* temp = deleteThis->next;
-        delete[] deleteThis;
-        walker->next = temp;
     }
+}
+
+void deleteNode(Node*& head, Node* deleteThis){
+    delete removeNode(head,deleteThis);
 }
 
 Node* search(Node* head, int item){
