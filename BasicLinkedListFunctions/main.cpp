@@ -9,12 +9,13 @@ struct Node{
 };
 
 void insertHead(Node*& head, int item);
-void insertAfter(Node* afterThis, int item);
+void insertAfter(Node *head, Node* afterThis, int item);
 void deleteNode(Node*& head, Node* deleteThis);
 Node* search(Node* head, int item);
 void print(Node* head);
 Node* previousNode(Node* head, Node* beforeThis);
 Node* removeNode(Node*& head, Node* removeThis);
+bool isNodeInList(Node* head, Node* checkThis);
 
 int main()
 {
@@ -23,17 +24,26 @@ int main()
     cout << "The List: " << endl;
     print(head);
     cout << "Insert After Head: " << endl;
-    insertAfter(head,20);
+    insertAfter(head,head,20);
     print(head);
     cout << "Insert After Middle: " << endl;
     Node* temp = head->next->next->next->next; //(5)
-    insertAfter(temp,50);
+    insertAfter(head,temp,50);
     print(head);
     cout << "Remove: " << endl;
     Node* temp2 = removeNode(head,temp);
     cout << temp2->item << endl;
     cout << "Delete: " << endl;
     deleteNode(head,head);
+    print(head);
+
+    Node* notInList = new Node(1,NULL);
+    bool check = isNodeInList(head,notInList);
+    if(check) cout << "Node is In List. (FUNCTION IS WRONG)" << endl;
+    else cout << "Node is not list. FUNCTION WORKING" << endl;
+    insertAfter(head,notInList,25);
+    print(head);
+    removeNode(head,notInList);
     print(head);
 
 
@@ -54,12 +64,15 @@ void insertHead(Node*& head, int item){
     head = newNode;
 }
 
-void insertAfter(Node* afterThis, int item){
+void insertAfter(Node* head, Node* afterThis, int item){
+    if(!isNodeInList(head,afterThis)) return;
     Node* newNode = new Node(item,afterThis->next);
     afterThis->next = newNode;
 }
 
 Node* removeNode(Node*& head, Node* removeThis){
+    if(head == NULL) return NULL;
+    if(!isNodeInList(head,removeThis)) return NULL;
     if(removeThis == head){
         Node* temp = head;
         head = head->next;
@@ -71,8 +84,18 @@ Node* removeNode(Node*& head, Node* removeThis){
     return temp;
 }
 
+bool isNodeInList(Node* head, Node* checkThis){
+    Node* walker = head;
+    while(walker){
+        if(walker == checkThis) return true;
+        walker = walker->next;
+    }
+    return false;
+}
+
 Node* previousNode(Node* head, Node* beforeThis){
     if(beforeThis == head) return NULL;
+    if(!isNodeInList(head,beforeThis)) return NULL;
     Node* walker = head;
     while(walker){
         Node* temp = walker;
@@ -84,7 +107,8 @@ Node* previousNode(Node* head, Node* beforeThis){
 }
 
 void deleteNode(Node*& head, Node* deleteThis){
-    delete removeNode(head,deleteThis);
+    Node* temp = removeNode(head,deleteThis);
+    if(temp) delete temp;
 }
 
 Node* search(Node* head, int item){
