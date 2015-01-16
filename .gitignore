@@ -51,3 +51,8 @@ build-Lists-Desktop_Qt_5_2_0_MinGW_32bit-Debug/Makefile
 *.o
 *.o
 *.user
+*.user
+*.user
+*.exe
+*.o
+*.exe
