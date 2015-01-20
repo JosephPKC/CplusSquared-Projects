@@ -8,6 +8,7 @@ template <class T>
 struct Node{
     Node<T>* next;
     T item;
+    Node(){next = NULL;}
     Node(const T& item){this->item = item; next = NULL;}
     Node(const T& item, Node<T>* next){this->item = item; this->next = next;}
     friend std::ostream& operator <<(std::ostream& out, const Node& N){
@@ -22,6 +23,59 @@ namespace ltf{
         T temp = a;
         a = b;
         b = temp;
+    }
+
+    template <class T>
+    Node<T>* end(Node<T>* head){
+        return atP(head,count(head) - 1);
+    }
+
+    template <class T>
+    Node<T>* search(Node<T>* head, const T& item, int start){
+        Node<T>* walker = atP(head,start);
+        while(walker){
+            if(walker->item == item) return walker; //== has to be defined for T
+            walker = walker->next;
+        }
+        return NULL;
+    }
+
+    template <class T>
+    Node<T>* search(Node<T>* head, const T& item){
+        return search(head,item,0);
+    }
+
+    template <class T>
+    void reverse(Node<T>* head){
+        Node<T>* front = head;
+        Node<T>* back = ltf::end(head);
+        while((front != back->next) && (front != back)){
+            ltf::swap(front->item,back->item);
+            front = front->next;
+            back = previousNode(head,back);
+        }
+    }
+
+    template <class T>
+    Node<T>* reverseNew(Node<T>* head){
+        Node<T>* headR = NULL;
+        copy(head,headR);
+        reverse(headR);
+        return headR;
+    }
+
+    template <class T>
+    void print(Node<T>* head){
+    //    if(isEmpty(head)){
+    //        std::cout << "" << std::endl;
+    //        return;
+    //    }
+        Node<T>* walker = head;
+        while(walker){
+            std::cout << walker->item << " | ";
+            walker = walker->next;
+        }
+        std::cout << std::endl;
     }
 }
 
@@ -38,7 +92,9 @@ Node<T>* insertBefore(Node<T>*& head, Node<T>* beforeThis, const T& item){
     if(beforeThis == head) return insertHead(head,item); //Check if head before check previous
     Node<T>* prev = previousNode(head,beforeThis); //Takes care of node not in list
     if(!prev) return NULL; //Takes care of node not in list
-    Node<T>* newNode = new Node<int>(item,beforeThis);
+    Node<T>* newNode = new Node<T>;
+    newNode->item = item;
+    newNode->next = beforeThis;
     prev->next = newNode;
     return newNode;
 }
@@ -56,7 +112,7 @@ template <class T>
 Node<T>* insertSorted(Node<T>*& head, const T& item){
     Node<T>* walker = head;
     while(walker){
-        if(item <= walker->item) break;
+        if(item < walker->item) break;
         walker = walker->next;
     }
     if(!walker) insertEnd(head,item);
@@ -65,8 +121,9 @@ Node<T>* insertSorted(Node<T>*& head, const T& item){
 }
 
 template <class T>
-Node<T>* insertEnd(Node<T>* head, const T& item){
-    return insertAfter(head,end(head),item);
+Node<T>* insertEnd(Node<T>*& head, const T& item){
+    if(isEmpty(head)) return insertHead(head,item);
+    return insertAfter(head,ltf::end(head),item);
 }
 
 template <class T>
@@ -96,39 +153,27 @@ T deleteNode(Node<T>*& head, Node<T>* deleteThis){
         delete temp;
         return hold;
     }
-    return NULL; //return
+//    return NULL; //return
 }
 
 template <class T>
 T deleteNode(Node<T>*& head, const T& item){
-    Node<T>* found = search(head,item);
+    Node<T>* found = ltf::search(head,item);
     if(!found) return NULL; //return what
     return deleteNode(head,found);
 }
 
-template <class T>
-Node<T>* search(Node<T>* head, const T& item){
-    return search(head,item,0);
-}
+
 
 template <class T>
-Node<T>* search(Node<T>* head, const T& item, int start){
-    Node<T>* walker = atP(head,start);
-    while(walker){
-        if(walker->item == item) return walker; //== has to be defined for T
-        walker = walker->next;
-    }
-    return NULL;
-}
-
-template <class T>
-T at(Node<T>* head, int index){
-    if(index >= count(head)) return NULL; //return something
+T& at(Node<T>* head, int index){
+//    if(!(index >= count(head) && index < 0)) //exception?
     return atP(head,index)->item;
 }
 
 template <class T>
 Node<T>* atP(Node<T>* head, int index){
+    if(index < 0) return NULL;
     if(index >= count(head)) return NULL;
     Node<T>* walker = head;
     for(int i = 0; i < index; i++) walker = walker->next;
@@ -146,24 +191,7 @@ int count(Node<T>* head){
     return i;
 }
 
-template <class T>
-void reverse(Node<T>* head){
-    Node<T>* front = head;
-    Node<T>* back = end(head);
-    while((front != back->next) && (front != back)){
-        ltf::swap(front->item,back->item);
-        front = front->next;
-        back = previousNode(head,back);
-    }
-}
 
-template <class T>
-Node<T>* reverseNew(Node<T>* head){
-    Node<T>* headR = NULL;
-    copy(head,headR);
-    reverse(headR);
-    return headR;
-}
 
 template <class T>
 void deleteRepeats(Node<T>* head){
@@ -213,7 +241,7 @@ void copy(Node<T>* headS, Node<T>*& headD){
     destroy(headD);
     for(int i = 0; i < count(headS); i++)
         insertHead(headD,at(headS,i));
-    reverse(headD);
+    ltf::reverse(headD);
 }
 
 template <class T>
@@ -248,7 +276,7 @@ void splitItem(Node<T>*& head, Node<T>*& headA, Node<T>*& headB, const T& item){
 ////    splitHere->next = NULL;
 ////    head = NULL;
 //    splitNode(head,headA,headB,splitHere);
-    splitNode(head,headA,headB,search(head,item));
+    splitNode(head,headA,headB,ltf::search(head,item));
 }
 
 template <class T>
@@ -262,9 +290,11 @@ void splitNode(Node<T>*& head, Node<T>*& headA, Node<T>*& headB, Node<T>* splitH
 
 template <class T>
 Node<T>* append(Node<T>* headS, Node<T>*& headD){
-    Node<T>* appendHere = end(headD);
-    appendHere->next = headS;
-    headS = NULL;
+    Node<T>* appendHere = ltf::end(headD);
+    Node<T>* copyS = NULL;
+
+    copy(headS,copyS);
+    appendHere->next = copyS;
     return appendHere->next;
 }
 
@@ -272,7 +302,7 @@ template <class T>
 Node<T>* appendNew(Node<T>* headS, Node<T>* headD){
     Node<T>* headA = NULL;
     copy(headD,headA);
-    headS = append(headS,headA);
+    append(headS,headA);
     return headA;
 }
 
@@ -281,10 +311,8 @@ Node<T>* subtract(Node<T>* headA, Node<T>* headB){
     //subtract items in B from A
     Node<T>* headBUnique = deleteRepeatsNew(headB);
     Node<T>* walker = headBUnique;
-    print(walker);
     Node<T>* headS = NULL;
     copy(headA,headS);
-    print(headS);
     while(walker){
         deleteInstanceOf(headS,at(headBUnique,index(headBUnique,walker)));
         walker = walker->next;
@@ -294,22 +322,22 @@ Node<T>* subtract(Node<T>* headA, Node<T>* headB){
 
 template <class T>
 void deleteInstanceOf(Node<T>*& head, const T& item){
-    Node<T>* find = search(head,item);
+    Node<T>* find = ltf::search(head,item);
     while(find){
         int i = index(head,find);
         deleteNode(head,find);
-        find = search(head,item, i);
+        find = ltf::search(head,item, i);
     }
 }
 
 template <class T>
 void deleteRepeatsOf(Node<T>* head, const T& item){
-    Node<T>* uniqueLoc = search(head,item);
-    Node<T>* find = search(head,item,index(head,uniqueLoc) + 1);
+    Node<T>* uniqueLoc = ltf::search(head,item);
+    Node<T>* find = ltf::search(head,item,index(head,uniqueLoc) + 1);
     while(find){
         int i = index(head,find);
         deleteNode(head,find);
-        find = search(head,item, i);
+        find = ltf::search(head,item, i);
     }
 }
 
@@ -330,7 +358,7 @@ int index(Node<T>* head, Node<T>* indexHere){
 
 template <class T>
 void destroy(Node<T>*& head){
-    while(head) {deleteNode(head,head); print(head);}
+    while(head) deleteNode(head,head);
     head = NULL;
 }
 
@@ -378,29 +406,14 @@ bool isNodeInList(Node<T>* head, Node<T>* checkThis){
     return false;
 }
 
-template <class T>
-void print(Node<T>* head){
-    if(isEmpty(head)){
-        std::cout << "" << std::endl;
-        return;
-    }
-    Node<T>* walker = head;
-    while(walker){
-        std::cout << walker->item << " | ";
-        walker = walker->next;
-    }
-    std::cout << std::endl;
-}
+
 
 template <class T>
 bool isEmpty(Node<T>* head){
     return head == NULL;
 }
 
-template <class T>
-Node<T>* end(Node<T>* head){
-    return atP(head,count(head) - 1);
-}
+
 
 
 
