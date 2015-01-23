@@ -17,8 +17,12 @@ struct Increment{
 
 template <typename T>
 struct Print{
+private:
+    std::ostream& out;
+public:
+    Print(std::ostream& outs):out(outs){}
     void operator()(const T& obj){
-        std::cout << obj;
+        out << obj;
     }
 };
 
@@ -26,6 +30,13 @@ template <typename T>
 struct Equal{
     bool operator()(const T& left, const T& right){
         return left == right;
+    }
+};
+
+template <typename T>
+struct Less{
+    bool operator()(const T& left, const T& right){
+        return left < right;
     }
 };
 
@@ -44,4 +55,13 @@ void traverseCond(Node<T>* head, action act, condition cond, const T& item){
     }
 }
 
+template <typename T, typename action>
+void traverseBasic(Node<T>* head, action act){
+    Node<T>* walker = head;
+    while(walker){
+        act(walker->item);
+        walker = walker->next;
+    }
+
+}
 #endif // GENERICFUNCTIONS_H
