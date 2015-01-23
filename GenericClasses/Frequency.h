@@ -8,21 +8,6 @@ template <typename T>
 class Frequency{
 private:
     Node<NodePair<T,size_t> >* head;
-
-    bool isUnique(const T& item){
-        return !searchPair(item);
-    }
-
-//    FreqPair<T>* searchPair(const T& item){
-//        FreqPair<T>* walker = head;
-//        while(walker){
-//            if(walker->item.second == item)
-//                return walker;
-//            walker = walker->next;
-//        }
-//        return NULL;
-//    }
-
 public:
     Frequency() : head(NULL){}
 
@@ -40,19 +25,36 @@ public:
         destroy(head);
     }
 
-    void insert(const T& item){
-        Node<T>* result = insertSortedUnique(head,item);
-        if(result)
-            traverseCond(head,Increment<T>(),Equal<T>(),item);
+    bool empty(){
+        return isEmpty(head);
     }
 
-    template <class Q>
-    friend std::ostream& operator <<(std::ostream& out, const Frequency<Q>& L){
-        traverseCond(L.head,Print<Q>(),True<Q>(),NULL);
+    int size(){
+        return count(head);
+    }
+
+    void insert(const T& item){
+        NodePair<T,size_t> N(item,1);
+        Node<NodePair<T,size_t> >* result = insertSortedUnique(head,N);
+        if(!result) traverseBasicC(head,Equal<NodePair<T,size_t> >(),Increment<NodePair<T,size_t> >(),N);
+    }
+
+    void erase(const T& item){
+        NodePair<T,size_t> N(item,0);
+        deleteNode(head,N);
+    }
+
+    unsigned int& operator [](int index){
+        NodePair<T,size_t> N = at(head,index);
+        return N.secondary;
+    }
+
+    template <typename R>
+    friend std::ostream& operator <<(std::ostream& out, const Frequency<R>& F){
+        traverseBasic(F.head,Print<NodePair<R,size_t> >(out));
         return out;
     }
 };
-
 #endif // FREQUENCY_H
 
 

@@ -151,6 +151,7 @@ Makefile: ../GenericClasses/GenericClasses.pro ../../../../../../Qt/Qt5.2.0/5.2.
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/resolve_config.prf \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/exclusive_builds_post.prf \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/default_post.prf \
+		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/c++11.prf \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/win32/console.prf \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/qml_debug.prf \
 		../../../../../../Qt/Qt5.2.0/5.2.0/mingw48_32/mkspecs/features/declarative_debug.prf \
@@ -254,6 +255,7 @@ Makefile: ../GenericClasses/GenericClasses.pro ../../../../../../Qt/Qt5.2.0/5.2.
 ..\..\..\..\..\..\Qt\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\resolve_config.prf:
 ..\..\..\..\..\..\Qt\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\exclusive_builds_post.prf:
 ..\..\..\..\..\..\Qt\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\default_post.prf:
+..\..\..\..\..\..\Qt\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\c++11.prf:
 ..\..\..\..\..\..\Qt\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\win32\console.prf:
 ..\..\..\..\..\..\Qt\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\qml_debug.prf:
 ..\..\..\..\..\..\Qt\Qt5.2.0\5.2.0\mingw48_32\mkspecs\features\declarative_debug.prf:

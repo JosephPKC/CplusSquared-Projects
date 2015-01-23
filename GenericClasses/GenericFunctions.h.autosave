@@ -1,6 +1,7 @@
 #ifndef GENERICFUNCTIONS_H
 #define GENERICFUNCTIONS_H
 #include "NodePair.h"
+//Functors
 template <typename T>
 struct DoNothing{
     void operator ()(const T& obj){
@@ -54,6 +55,7 @@ struct True{
     }
 };
 
+//Generic Functions
 template <typename T,  typename condition, typename action>
 void traverseBasicC(Node<T>* head, condition cond,  action act, const T& item){
     while(head){

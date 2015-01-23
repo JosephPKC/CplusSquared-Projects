@@ -3,19 +3,9 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "GenericFunctions.h"
 
-template <class T>
-struct Node{
-    Node<T>* next;
-    T item;
-    Node(){next = NULL;}
-    Node(const T& item){this->item = item; next = NULL;}
-    Node(const T& item, Node<T>* next){this->item = item; this->next = next;}
-    friend std::ostream& operator <<(std::ostream& out, const Node& N){
-        out << N.item;
-        return out;
-    }
-};
+
 
 namespace ltf{
     template <class T>
@@ -111,11 +101,12 @@ Node<T>* insertAfter(Node<T>* head, Node<T>* afterThis, const T& item){
 template <class T>
 Node<T>* insertSorted(Node<T>*& head, const T& item){
     Node<T>* walker = head;
-    while(walker){
-        if(item < walker->item) break;
-        walker = walker->next;
-    }
-    if(!walker) insertEnd(head,item);
+    traverseNodeRC(walker,Greater<T>(),DoNothing<T>(),item);
+//    while(walker){
+//        if(item < walker->item) break;
+//        walker = walker->next;
+//    }
+    if(!walker) return insertEnd(head,item);
     insertBefore(head,walker,item);
     return previousNode(head,walker);
 }
@@ -123,7 +114,7 @@ Node<T>* insertSorted(Node<T>*& head, const T& item){
 template <typename T>
 Node<T>* insertSortedUnique(Node<T>*& head, const T& item){
     if(ltf::search(head,item)) return NULL;
-    insertSorted(head,item);
+    return insertSorted(head,item);
 }
 
 template <class T>
@@ -165,7 +156,7 @@ T deleteNode(Node<T>*& head, Node<T>* deleteThis){
 template <class T>
 T deleteNode(Node<T>*& head, const T& item){
     Node<T>* found = ltf::search(head,item);
-    if(!found) return NULL; //return what
+//    if(!found) ; //return what
     return deleteNode(head,found);
 }
 
