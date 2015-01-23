@@ -2,51 +2,12 @@
 #define FREQUENCY_H
 #include "ListTools.h"
 #include "GenericFunctions.h"
+#include "NodePair.h"
 
-template <typename T, typename U>
-struct NodePair{
-    T primary;
-    U secondary;
-
-    NodePair(const T& primary, const U& secondary){
-        this->primary = primary;
-        this->secondary = secondary;
-    }
-
-    friend bool operator ==(const NodePair<T,U>& left, const NodePair<T,U> right){
-        return left.primary == right.secondary;
-    }
-
-    friend bool operator <(const NodePair<T,U>& left, const NodePair<T,U> right){
-        return left.primary < right.secondary;
-    }
-
-    friend bool operator >(const NodePair<T,U>& left, const NodePair<T,U> right){
-        return left.primary > right.secondary;
-    }
-
-    friend std::ostream& operator <<(std::ostream& out, const NodePair<T,U>& right){
-        out << right.primary << "(" << right.secondary << ")";
-    }
-
-    NodePair<T,U>& operator ++(void){
-        secondary++;
-        return *this;
-    }
-    NodePair<T,U> operator ++(int){
-        NodePair<T,U> temp(this->primary,this->secondary);
-        secondary++;
-        return temp;
-    }
-
-};
-template <typename T>
-using Node = Node<NodePair<T,int> >;
 template <typename T>
 class Frequency{
 private:
-
-    Node<T>* head;
+    Node<NodePair<T,size_t> >* head;
 
     bool isUnique(const T& item){
         return !searchPair(item);
