@@ -1,5 +1,19 @@
 #ifndef NODEPAIR_H
 #define NODEPAIR_H
+
+template <class T>
+struct Node{
+    Node<T>* next;
+    T item;
+    Node(){next = NULL;}
+    Node(const T& item){this->item = item; next = NULL;}
+    Node(const T& item, Node<T>* next){this->item = item; this->next = next;}
+    friend std::ostream& operator <<(std::ostream& out, const Node& N){
+        out << N.item;
+        return out;
+    }
+};
+
 template <typename T, typename U>
 struct NodePair{
     T primary;
@@ -24,7 +38,7 @@ struct NodePair{
     }
 
     friend std::ostream& operator <<(std::ostream& out, const NodePair<T,U>& right){
-        out << right.primary << "(" << right.secondary << ")";
+        out << right.primary << " (" << right.secondary << ")";
     }
 
     NodePair<T,U>& operator ++(void){

@@ -1,6 +1,13 @@
 #ifndef GENERICFUNCTIONS_H
 #define GENERICFUNCTIONS_H
 #include "NodePair.h"
+
+template <typename T>
+struct default_t{
+    operator T() const{return T();}
+};
+
+//Functors
 template <typename T>
 struct DoNothing{
     void operator ()(const T& obj){
@@ -23,6 +30,14 @@ public:
     Print(std::ostream& outs):out(outs){}
     void operator()(const T& obj){
         out << obj << " | ";
+    }
+};
+
+template <typename T, typename U>
+struct Hold{
+    U value;
+    void operator ()(const T& obj){
+
     }
 };
 
@@ -54,25 +69,26 @@ struct True{
     }
 };
 
+//Generic Functions
 template <typename T,  typename condition, typename action>
-void traverseBasicC(Node<T>* head, condition cond,  action act, const T& item){
+void traverse(Node<T>* head, condition cond,  action act, const T& item){
     while(head){
         if(cond(head->item,item)) act(head->item);
         head = head->next;
     }
 }
 
-template <typename T, typename action>
-void traverseBasic(Node<T>* head, action act){
-    Node<T>* walker = head;
-    while(walker){
-        act(walker->item);
-        walker = walker->next;
-    }
-}
+//template <typename T, typename action>
+//void traverseBasic(Node<T>* head, action act){
+//    Node<T>* walker = head;
+//    while(walker){
+//        act(walker->item);
+//        walker = walker->next;
+//    }
+//}
 
 template <typename T, typename condition, typename action>
-void traverseNodeRC(Node<T>*& head, condition cond, action act, const T& item){
+void traverse1R(Node<T>*& head, condition cond, action act, const T& item){
     while(head){
         if(cond(head->item,item)) act(head->item);
         head = head->next;

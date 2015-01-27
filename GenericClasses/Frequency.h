@@ -36,7 +36,7 @@ public:
     void insert(const T& item){
         NodePair<T,size_t> N(item,1);
         Node<NodePair<T,size_t> >* result = insertSortedUnique(head,N);
-        if(!result) traverseBasicC(head,Equal<NodePair<T,size_t> >(),Increment<NodePair<T,size_t> >(),N);
+        if(!result) traverse(head,Equal<NodePair<T,size_t> >(),Increment<NodePair<T,size_t> >(),N);
     }
 
     void erase(const T& item){
@@ -51,7 +51,7 @@ public:
 
     template <typename R>
     friend std::ostream& operator <<(std::ostream& out, const Frequency<R>& F){
-        traverseBasic(F.head,Print<NodePair<R,size_t> >(out));
+        traverse(F.head,True<NodePair<T,size_t> >(),Print<NodePair<R,size_t> >(out),{});
         return out;
     }
 };

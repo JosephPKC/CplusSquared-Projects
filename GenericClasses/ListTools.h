@@ -101,7 +101,7 @@ Node<T>* insertAfter(Node<T>* head, Node<T>* afterThis, const T& item){
 template <class T>
 Node<T>* insertSorted(Node<T>*& head, const T& item){
     Node<T>* walker = head;
-    traverseNodeRC(walker,Greater<T>(),DoNothing<T>(),item);
+    traverse1R(walker,Greater<T>(),DoNothing<T>(),item);
 //    while(walker){
 //        if(item < walker->item) break;
 //        walker = walker->next;
@@ -353,13 +353,13 @@ int index(Node<T>* head, Node<T>* indexHere){
     return -1;
 }
 
-template <class T>
+template <class T>//
 void destroy(Node<T>*& head){
     while(head) deleteNode(head,head);
     head = NULL;
 }
 
-template <class T>
+template <class T>//
 Node<T>* min(Node<T>* head){
     Node<T>* walker = head->next;
     Node<T>* min = head;
@@ -370,7 +370,7 @@ Node<T>* min(Node<T>* head){
     return min;
 }
 
-template <class T>
+template <class T>//
 Node<T>* max(Node<T>* head){
     Node<T>* walker = head;
     Node<T>* max = head;
@@ -381,7 +381,7 @@ Node<T>* max(Node<T>* head){
     return max;
 }
 
-template <class T>
+template <class T>//
 Node<T>* previousNode(Node<T>* head, Node<T>* beforeThis){
     if(beforeThis == head) return NULL;
     if(!isNodeInList(head,beforeThis)) return NULL;
@@ -393,7 +393,7 @@ Node<T>* previousNode(Node<T>* head, Node<T>* beforeThis){
     }
 }
 
-template <class T>
+template <class T>//
 bool isNodeInList(Node<T>* head, Node<T>* checkThis){
     Node<T>* walker = head;
     while(walker){

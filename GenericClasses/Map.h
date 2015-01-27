@@ -50,7 +50,7 @@ public:
 
     template <typename K, typename I>
     friend std::ostream& operator <<(std::ostream& out, const Map<K,I>& M){
-        traverseBasic(M.head,Print<NodePair<K,I> >(out));
+        traverse(M.head,True<NodePair<Key,V> >(),Print<NodePair<K,I> >(out),{});
         return out;
     }
 
