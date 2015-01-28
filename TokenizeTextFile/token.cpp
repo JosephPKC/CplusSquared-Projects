@@ -5,7 +5,7 @@ std::ostream& operator <<(std::ostream& out, const Token& T){
     return out;
 }
 
-int& Token::getType(){
+Type &Token::getType(){
     return type;
 }
 

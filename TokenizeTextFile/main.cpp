@@ -1,10 +1,20 @@
 #include <iostream>
 #include "ftokenizer.h"
+#include "Frequency.h"
 using namespace std;
 
 int main()
 {
-    FTokenizer F("a.txt");
+//    const string FILE_NAME = "file.txt";
+//    FTokenizer F(FILE_NAME);
+//    Token H = F.nextToken();
+//    Frequency<Token> tFreq;
+//    while(F.isMore()){
+//        cout << H << endl;
+//        H = F.nextToken();
+//        tFreq.insert(H);
+//    }
+//    cout << tFreq << endl;
     return 0;
 }
 
