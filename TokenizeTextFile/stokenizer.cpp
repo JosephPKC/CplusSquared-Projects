@@ -61,31 +61,53 @@ Token STokenizer::nextToken(){
     if(moreInBlock()){
         for(const auto& it : charList){
             std::cout << it.first << std::endl;
-            if(isType(block[pos],it.second)){
-                std::string tName = getToken(it.second);
-                Token tNew(tName,it.first);
-                return tNew;
-            }
+            Type tType = tokenType(block[pos]);
+            std::string tName = getToken(it.second);
+            Token tNew(tName,it.first);
+            return tNew;
         }
+    }
+    else{ //No more in the string
+
     }
 }
 
-bool setBlock(std::string newBlock);
-bool STokenizer::moreInBlock(){
-
+bool STokenizer::setBlock(std::string newBlock){
+    block = newBlock;
 }
 
-int getPos();
-Type tokenType(char ch);
-bool isKnown(char ch);
-void setUnknown(char ch);
-std::string getToken(std::string charSet);
+bool STokenizer::moreInBlock(){
+    return pos >= block.length();
+}
+
+int STokenizer::getPos(){
+    return pos;
+}
+
+Type STokenizer::tokenType(char ch){
+    for(const auto& it : charList){
+        if(isType(ch,it.second)) return it.first;
+    }
+    return DEFAULT;
+}
+
+bool STokenizer::isKnown(char ch){
+    return tokenType(ch) != DEFAULT;
+}
+
+void STokenizer::setUnknown(char ch){ //Assumes the character is unknown
+    charList[UNKNOWN] += ch;
+}
+
+std::string STokenizer::getToken(std::string charSet){
+    int bPos = block.find_first_of(charSet,pos);
+    int ePos = block.find_first_not_of(charSet,pos);
+    pos = ePos + 1;
+    return block.substr(bPos,ePos);
+}
 
 void STokenizer::createSets(std::map<Type,std::string> sets){
     charList = sets;
-    for(const auto& it : charList){
-
-    }
 }
 
 bool STokenizer::isType(char ch, std::string set){
