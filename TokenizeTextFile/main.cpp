@@ -15,8 +15,16 @@ int main()
 //        tFreq.insert(H);
 //    }
 //    cout << tFreq << endl;
-    STokenizer S;
-    S.nextToken();
+    string s = " άλφα";
+    STokenizer S(s);
+    Token T;
+    while(S.moreInBlock()){
+        T = S.nextToken();
+        if(T.getType() == VOID) cout << "None" << endl;
+        else cout << T << endl;
+        cin.get();
+    }
+
 
 
     return 0;

@@ -58,17 +58,37 @@ Token STokenizer::nextToken(){
     //If there is no more in the block, ask for more?
     //Throw an invalid token, if possible?
     //Or perhaps throw an exception
+    std::cout << "Pos: " << pos << std::endl;
     if(moreInBlock()){
-        for(const auto& it : charList){
-            std::cout << it.first << std::endl;
-            Type tType = tokenType(block[pos]);
-            std::string tName = getToken(it.second);
-            Token tNew(tName,it.first);
-            return tNew;
+        std::cout << "There is more in the block." << std::endl;
+        Type tType = tokenType(block[pos]);
+        //What do to with unknowns:
+        //Ignore them and keep looking for a valid token
+        //Ignore them and throw a null
+        //Spit out that unknown token
+//        while(!isKnown(block[pos])){
+//            setUnknown(block[pos]);
+//            pos++;
+//            std::cout << "CHecking for unknown: " << tokenType(block[pos]) << std::endl;
+//        }
+        while(!isKnown(block[pos])){
+//            setUnknown(block[pos]);
+            pos++;
+            if(!moreInBlock()) return Token("",VOID);
         }
+        tType = tokenType(block[pos]);
+        std::cout << "After Unknown Check Pos: " << pos << std::endl;
+        std::cout << "Token type: " << tType << std::endl;
+        std::cout << "Token set: " << tokenSet.at(tType) << std::endl;
+        std::string tName = getToken(tokenSet.at(tType));
+        if(tName == "") tName = block.substr(pos,block.length());
+        std::cout << "Token name: " << tName << std::endl;
+        Token tNew(tName,tType);
+        return tNew;
     }
     else{ //No more in the string
-
+        std::cout << "Nothing" << std::endl;
+//        return NULL;
     }
 }
 
@@ -77,7 +97,10 @@ bool STokenizer::setBlock(std::string newBlock){
 }
 
 bool STokenizer::moreInBlock(){
-    return pos >= block.length();
+//    std::cout << "Pos: " << pos << std::endl;
+//    std::cout << "Block: " << block << std::endl;
+//    std::cout << "Block length: " << block.length() << std::endl;
+    return pos < block.length();
 }
 
 int STokenizer::getPos(){
@@ -101,9 +124,16 @@ void STokenizer::setUnknown(char ch){ //Assumes the character is unknown
 
 std::string STokenizer::getToken(std::string charSet){
     int bPos = block.find_first_of(charSet,pos);
-    int ePos = block.find_first_not_of(charSet,pos);
-    pos = ePos + 1;
-    return block.substr(bPos,ePos);
+    int ePos = block.find_first_not_of(charSet,pos+1);
+    std::cout << "Begin: " << bPos << " End: " << ePos << std::endl;
+    if(bPos == -1) return "";
+    if(ePos == -1){
+        pos = block.length();
+        return block.substr(bPos);
+    }
+    pos = ePos;
+    std::cout << "The substring: " << block.substr(bPos,abs(bPos-ePos)) << std::endl;
+    return block.substr(bPos,abs(bPos-ePos));
 }
 
 void STokenizer::createSets(std::map<Type,std::string> sets){
@@ -111,5 +141,5 @@ void STokenizer::createSets(std::map<Type,std::string> sets){
 }
 
 bool STokenizer::isType(char ch, std::string set){
-    return set.find(ch);
+    return set.find(ch) != -1;
 }

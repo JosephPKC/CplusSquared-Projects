@@ -14,7 +14,7 @@ private:
     bool isType(char ch, std::string set);
 public:
     STokenizer():block(""),pos(0){createSets(tokenSet);}
-    STokenizer(const std::string s):block(s),pos(0){createSets(tokenSet);}
+    STokenizer(const std::string s):block(s),pos(0){std::cout << "Creating sets" << std::endl;createSets(tokenSet);}
 //    friend STokenizer& operator >>(STokenizer& st, std::string& token);
 //    Type tokenType(char ch);
 //    std::string getThisToken(std::string charSet);

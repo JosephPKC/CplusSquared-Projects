@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 enum Type{
+    VOID = -3,
     DEFAULT = -2,
     UNKNOWN = -1,
     END = 0,
@@ -45,7 +46,7 @@ private:
     std::string token;
     Type type;
 public:
-    Token():token(NULL),type(DEFAULT){}
+    Token():token(""),type(DEFAULT){}
     Token(std::string s, Type t):token(s),type(t){}
     Token(char ch, Type t):type(t){token += ch;}
     friend std::ostream& operator <<(std::ostream& out, const Token& T);

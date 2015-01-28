@@ -6,6 +6,14 @@ FTokenizer::FTokenizer(std::string file):FTokenizer(){
         std::cout << "HEY THE FILE FAILED TO OPEN" << std::endl;
 }
 
+//bool setBlock(std::string block);
+//static const int MAX_BLOCK = 50; //Size of the block
+//FTokenizer(std::string file);
+//bool setFile(char* file);
+//Token nextToken();
+
+//bool moreInFile();
+//int getPos();
 //Token FTokenizer::nextToken(){
 //    if(stk.more()){
 //        Token T = stk.nextToken();
