@@ -15,6 +15,10 @@ int main()
 //        tFreq.insert(H);
 //    }
 //    cout << tFreq << endl;
+    STokenizer S;
+    S.nextToken();
+
+
     return 0;
 }
 

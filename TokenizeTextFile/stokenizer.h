@@ -1,5 +1,6 @@
 #ifndef __STOKENIZER_H_INCLUDED__
 #define __STOKENIZER_H_INCLUDED__
+#include <iostream>
 #include "token.h"
 #include <vector>
 #include <map>
@@ -10,9 +11,10 @@ private:
 //    std::vector<std::string> charList; //our list instead of vector //List of char sets?
     std::map<Type,std::string> charList;
     void createSets(std::map<Type,std::string> sets); //sets the charList to these char sets
+    bool isType(char ch, std::string set);
 public:
-    STokenizer():block(NULL),pos(0){}
-    STokenizer(const std::string s):block(s),pos(0){}
+    STokenizer():block(""),pos(0){createSets(tokenSet);}
+    STokenizer(const std::string s):block(s),pos(0){createSets(tokenSet);}
 //    friend STokenizer& operator >>(STokenizer& st, std::string& token);
 //    Type tokenType(char ch);
 //    std::string getThisToken(std::string charSet);
