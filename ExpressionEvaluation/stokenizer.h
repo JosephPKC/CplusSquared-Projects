@@ -2,7 +2,6 @@
 #define __STOKENIZER_H_INCLUDED__
 #include <iostream>
 #include "token.h"
-#include <vector>
 #include <map>
 class STokenizer{
 private:

@@ -1,0 +1,75 @@
+This is the string:
+These are words: Hello World!; Thesre are numbers: 012345.
+Grabbing tokens using standard token set:
+These| |are| |words|:| |Hello| |World|!;| |Thesre| |are| |numbers|:| |012345|.|
+This is the next string:
+ abc def 123!
+         ab77 2;3;; f>
+
+Grabbing tokens using standard token set:
+ |abc| |def| |123|!| |
+|        |ab|77| |2|;|3|;;| |f|>| |
+|
+This is the string:
+Deliverables: For every project, submit ALL SOURCE FILES (main.cpp, all header files, and other .cpp files) and a test file in text format. Projects with no test file will earn a score of zero.
+This the block of S:
+Deliverables: For every project, submit ALL SOURCE FILES (main.cpp, all header files, and other .cpp files) and a test file in text format. Projects with no test file will earn a score of zero.
+There is more
+Grabbing tokens using standard token set:
+Deliverables|:| |For| |every| |project|,| |submit| |ALL| |SOURCE| |FILES| |(|main|.|cpp|,| |all| |header| |files|,| |and| |other| |.|cpp| |files|)| |and| |a| |test| |file| |in| |text| |format|.| |Proj
+ects| |with| |no| |test| |file| |will| |earn| |a| |score| |of| |zero|.| |
+Press <RETURN> to close this window...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

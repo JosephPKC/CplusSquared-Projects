@@ -69,6 +69,13 @@ struct True{
     }
 };
 
+template <typename T, typename U>
+struct GreaterFreq{
+    bool operator()(const NodePair<T,U>& left, const NodePair<T,U>& right){
+        return greatS(left,right);
+    }
+};
+
 //Generic Functions
 template <typename T,  typename condition, typename action>
 void traverse(Node<T>* head, condition cond,  action act, const T& item){

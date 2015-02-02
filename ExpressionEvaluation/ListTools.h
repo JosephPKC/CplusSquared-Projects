@@ -3,7 +3,19 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <NodePair.h>
+
+template <class T>
+struct Node{
+    Node<T>* next;
+    T item;
+    Node(){next = NULL;}
+    Node(const T& item){this->item = item; next = NULL;}
+    Node(const T& item, Node<T>* next){this->item = item; this->next = next;}
+    friend std::ostream& operator <<(std::ostream& out, const Node& N){
+        out << N.item;
+        return out;
+    }
+};
 
 namespace ltf{
     template <class T>
@@ -373,17 +385,6 @@ Node<T>* max(Node<T>* head){
     Node<T>* max = head;
     while(walker){
         if(walker->item > max->item) max = walker;
-        walker = walker->next;
-    }
-    return max;
-}
-
-template <typename T, typename great>
-Node<T>* max(Node<T>* head, great cmp){
-    Node<T>* walker = head;
-    Node<T>* max = head;
-    while(walker){
-        if(cmp(walker->item,max->item)) max = walker;
         walker = walker->next;
     }
     return max;

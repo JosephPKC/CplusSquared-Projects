@@ -32,8 +32,7 @@ static const std::map<Type,std::string> tokenSet = {
 //Expression Set
 static const std::map<Type,std::string> expSet = {
     {UNKNOWN,""},
-    {SPACE," \t"},
-    {ALPHA,"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"},
+    {SPACE," "},
     {NUM,"0123456789"},
     {HIGHER,"*/"},
     {LOWER,"+-"},

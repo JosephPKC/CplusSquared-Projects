@@ -25,6 +25,18 @@ struct NodePair{
         this->secondary = secondary;
     }
 
+    friend bool equalS(const NodePair<T,U>& left, const NodePair<T,U> right){
+        return left.secondary == right.secondary;
+    }
+
+    friend bool lessS(const NodePair<T,U>& left, const NodePair<T,U> right){
+        return left.secondary < right.secondary;
+    }
+
+    friend bool greatS(const NodePair<T,U>& left, const NodePair<T,U> right){
+        return left.secondary > right.secondary;
+    }
+
     friend bool operator ==(const NodePair<T,U>& left, const NodePair<T,U> right){
         return left.primary == right.primary;
     }
@@ -39,6 +51,7 @@ struct NodePair{
 
     friend std::ostream& operator <<(std::ostream& out, const NodePair<T,U>& right){
         out << right.primary << " (" << right.secondary << ")";
+        return out;
     }
 
     NodePair<T,U>& operator ++(void){
