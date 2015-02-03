@@ -7,24 +7,25 @@
 #include <cmath>
 class ExpressionEvaluator{
 private:
-public:
     std::string expression;
-    STokenizer stk;
     std::map<Type,std::string> dictionary;
 
-
-    void convertToPost(std::string exp);
-
+    std::string convertToPost(std::string exp);
     bool isPostFix(std::string exp); //Only way to check is to evaluate it
-    bool isValid(std::string exp); //Remove
+//    bool isValid(std::string exp); //Remove
     std::string convertInt(int i);
-
+    std::string evaluate(std::string exp);
 public:
     ExpressionEvaluator() : expression(""){}
     void setExpression(std::string exp);
     std::string getExpression();
-    std::string evaluate();
+    std::string evaluateExpression();
     void setTokenDictionary(std::map<Type,std::string> set);
 };
+
+//Things to note:
+//Currently does not support expression validation
+//Does not check for division by zero
+//Rounds down division due to integer division
 
 #endif // EXPRESSIONEVALUATOR_H
