@@ -10,5 +10,8 @@ include(deployment.pri)
 qtcAddDeployment()
 
 HEADERS += \
-    airport.h
+    airport.h \
+    Iterator.h \
+    ListTools.h \
+    Queue.h
 
