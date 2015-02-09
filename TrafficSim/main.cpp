@@ -4,6 +4,7 @@
 #include "airport.h"
 #include "Queue.h"
 using namespace std;
+//TODO: Change aQueue into a Priority Queue//--------------------------------
 //Constants for use without input function
 const int LAND_AVERAGE = 8;
 const int TAKEOFF_AVERAGE = 10;
