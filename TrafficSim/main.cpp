@@ -2,17 +2,28 @@
 #include <cstdlib>
 #include <ctime>
 #include "airport.h"
-#include "Queue.h"
+//#include "Queue.h"
+#include "PriorityQueue.h"
 using namespace std;
+template <typename T, typename U>
+ostream& operator <<(ostream& out, const std::pair<T,U> P){
+    out << "(" << P.first << "," << P.second << ")" ;
+    return out;
+}
+
 //TODO: Change aQueue into a Priority Queue//--------------------------------
 //Constants for use without input function
-const int LAND_AVERAGE = 8;
-const int TAKEOFF_AVERAGE = 10;
-const int LAND_TIME = 4;
-const int TAKEOFF_TIME = 6;
-const int NUM_OF_TURNS = 1000;
-const int FUEL_MAX = 13;
+const int LAND_AVERAGE = 7;
+const int TAKEOFF_AVERAGE = 9;
+//const int LAND_TIME = 5;
+//const int TAKEOFF_TIME = 4;
+const int NUM_OF_TURNS = 100;
+const int FUEL_MAX = 8;
 const int FUEL_MIN = 2;
+const int LAND_MAX = 5;
+const int LAND_MIN = 3;
+const int TAKE_MAX = 6;
+const int TAKE_MIN = 3;
 //Pre: Use for before simulation in order to set parameters
 //Process: Grabs parameters from user
 //Post: There are no default values for parameters so all of them must be set
@@ -20,22 +31,22 @@ void inputValues(int& aAve, int& dAve, int& aT, int& dT, int& maxTurns, int& fue
 //Pre: Requires the values from either input or preset constants
 //Process: Simulates Air Traffic
 //Post: Prints out relevant statistics at the end of the simulation
-void simulateAirTraffic(int aAve, int dAve, int aT, int dT, int maxTurns, int fuelMax, int fuelMin);
-//Pre: Uses the maximum and minimum parameters for fuel
-//Process: generates a random amount of fuel
-//Post: Returns the randomly generated amount of fuel
-int generateFuel(int fuelMax, int fuelMin);
+void simulateAirTraffic(int aAve, int dAve, int aMax, int aMin, int tMax, int tMin, int maxTurns, int fuelMax, int fuelMin);
+//Pre: Uses the maximum and minimum parameters
+//Process: generates a random number
+//Post: Returns the randomly generated number
+int generateRandom(int max, int min);
 //Pre: Requires values from the simulatio
 //Process: Prints out various stats
 //Post: None
-void outputStats(int aPlanesTotal, int dPlanesTotal, Averager aWait, Averager dWait, int aPlanesDone, int dPlanesDone, int crashedPlanes);
+void outputStats(int aPlanesTotal, int dPlanesTotal, Averager aWait, Averager dWait, Averager fuel, Averager aTime, Averager dTime, int aPlanesDone, int dPlanesDone, int crashedPlanes);
 
 int main(){
 //    int aAve, dAve, aT, dT, maxTurns, fuelMax, fuelMin;
     srand(time(NULL));
 //    inputValues(aAve,dAve,aT,dT,maxTurns,fuelMax,fuelMin);
 //    simulateAirTraffic(aAve,dAve,aT,dT,maxTurns,fuelMax,fuelMin);
-    simulateAirTraffic(LAND_AVERAGE,TAKEOFF_AVERAGE,LAND_TIME,TAKEOFF_TIME,NUM_OF_TURNS,FUEL_MAX,FUEL_MIN);
+    simulateAirTraffic(LAND_AVERAGE,TAKEOFF_AVERAGE,LAND_MAX,LAND_MIN,TAKE_MAX,TAKE_MIN,NUM_OF_TURNS,FUEL_MAX,FUEL_MIN);
     return 0;
 }
 
@@ -56,13 +67,13 @@ void inputValues(int& aAve, int& dAve, int& aT, int& dT, int& maxTurns, int& fue
     cin >> maxTurns;
 }
 
-int generateFuel(int fuelMax, int fuelMin){
-    return rand()% (fuelMax - fuelMin) + fuelMin + 1;
+int generateRandom(int max, int min){
+    return rand()% (max - min) + min + 1;
 }
 
-void simulateAirTraffic(int aAve, int dAve, int aT, int dT, int maxTurns, int fuelMax, int fuelMin){
+void simulateAirTraffic(int aAve, int dAve, int aMax, int aMin, int tMax, int tMin, int maxTurns, int fuelMax, int fuelMin){
     //NOTE: The fuel for arrival is the turn it will crash if not processed
-    Queue<std::pair<int,int> > aQueue; //Arrival Queue holds a pair for the timestamp and fuel
+    PriorityQueue<std::pair<int,int> > aQueue; //Arrival Queue holds a pair for the timestamp and fuel
     Queue<int> dQueue; //Departure Queue only holds the timestamp
     int nextPlane; //The next plan to be processed
     BoolSource arrival(1.0/aAve); //Arrival and Departure Generators
@@ -71,14 +82,16 @@ void simulateAirTraffic(int aAve, int dAve, int aT, int dT, int maxTurns, int fu
     Averager aWait; //Averagers for arrival wait times, departure wait times, and fuel amounts
     Averager dWait;
     Averager fuel;
+    Averager aTime;
+    Averager dTime;
     //Value for statistics
     int crashedPlanes = 0; //Number of planes that crashed while waiting to be processed
     int aPlanesTotal = 0; //Total arrivals
     int dPlanesTotal = 0; //Total departures
     int aPlanesDone = 0; //Number of arrivals processed
     int dPlanesDone = 0; //Number of departures processed
-    cout << "Seconds to arrive: " << aT << endl;
-    cout << "Seconds to depart: " << dT << endl;
+    cout << "Seconds to arrive: " << aMin << " - " << aMax << endl;
+    cout << "Seconds to depart: " << tMin << " - " << tMax << endl;
     cout << "Average arrival per turn: " << aAve << endl;
     cout << "Average departure per turn: " << dAve << endl;
     cout << "Total turns: " << maxTurns << endl;
@@ -86,62 +99,78 @@ void simulateAirTraffic(int aAve, int dAve, int aT, int dT, int maxTurns, int fu
     //The main simulation loop
     for(int currentTurn = 1; currentTurn <= maxTurns; currentTurn++){
         cout << "---------------------------------------" << endl;
-        cout << "Turn: " << currentTurn << endl;
+//        cout << "Turn: " << currentTurn << endl;
+        cout << "T: " << currentTurn << " " << endl;
         //Check for arrival/departure
         if(arrival.generate()){ //Checking for arrival
-            int fuelAmount = generateFuel(fuelMax,fuelMin);
-            aQueue.push(std::make_pair(currentTurn, fuelAmount + currentTurn)); //Add to queue
-            cout << "New Arrival: " << aQueue.back().first << " with fuel: " << aQueue.back().second << endl;
+            int fuelAmount = generateRandom(fuelMax,fuelMin);
+            aQueue.push(std::make_pair( fuelAmount + currentTurn,currentTurn)); //Add to queue
+//            cout << "New Arrival: " << currentTurn << " with fuel: " << fuelAmount + currentTurn << endl;
+            cout << "New Arrival ";
             aPlanesTotal++;
             fuel.addNum(fuelAmount);
         }
         if(departure.generate()){ //Checking for departure
             dQueue.push(currentTurn); //Add to queue
-            cout << "New Departure: " << dQueue.back() << endl;
+//            cout << "New Departure: " << currentTurn << endl;
+            cout << "New Departure ";
             dPlanesTotal++;
         }
+        cout << endl;
+        cout << "Arrivals: " << aQueue << endl;
+        cout << "Departures: " << dQueue << endl;
          //Do stuff if runway is not busy
         if((!runway.isOccupied()) && (!aQueue.empty())){ //Priority goes to arrivals
-            cout << "Runway is not busy: Arrival" << endl;
-            while(!aQueue.empty() && aQueue.front().second <= currentTurn){ //Checking for crashes
-                cout << "Arrival plane has crashed: " << aQueue.front().second << " <= " << currentTurn << endl;
+//            cout << "Runway is not busy: Arrival" << endl;
+
+            while(!aQueue.empty() && aQueue.front().first <= currentTurn){ //Checking for crashes
+//                cout << "Arrival plane has crashed: " << aQueue.front().first << " <= " << currentTurn << endl;
+                cout << "CRASHED" << endl;
                 crashedPlanes++;
                 aQueue.pop();
             }
             if(aQueue.empty()){ //If every plane in queue crashed
-                cout << "No more surviving arrival planes" << endl;
+//                cout << "No more surviving arrival planes" << endl;
 
             }
             else{ //As long as there is a plane in queue that has survived
-                nextPlane = aQueue.front().first;
-                cout << "The next plane: " << nextPlane << endl;
+                nextPlane = aQueue.front().second;
+//                cout << "The next plane: " << nextPlane << endl;
                 aQueue.pop();
                 aWait.addNum(currentTurn - nextPlane);
                 aPlanesDone++;
+                int aT = generateRandom(aMax,aMin);
+                aTime.addNum(aT);
                 runway.set(aT);
                 runway.begin();
             }
         }
         if((!runway.isOccupied() && (!dQueue.empty()))){ //Process Departures
-            cout << "Runway is not busy: Departure" << endl;
+//            cout << "Runway is not busy: Departure" << endl;
             nextPlane = dQueue.front();
-            cout << "The next plane: " << nextPlane << endl;
+//            cout << "The next plane: " << nextPlane << endl;
             dQueue.pop();
             dWait.addNum(currentTurn - nextPlane);
             dPlanesDone++;
+            int dT = generateRandom(tMax,tMin);
+            dTime.addNum(dT);
             runway.set(dT);
             runway.begin();
         }
-        cout << "One turn has passed" << endl;
+//        cout << "One turn has passed" << endl;
         runway.step(); //Increment the runway
     }
-    if(fuel.countNum() > 0) //Average for fuel (Not really necessary)
-        cout << "Average Fuel in Turns for Arrival: " << fuel.average() << " Turns." << endl;
-    outputStats(aPlanesTotal,dPlanesTotal,aWait,dWait,aPlanesDone,dPlanesDone,crashedPlanes);
+    outputStats(aPlanesTotal,dPlanesTotal,aWait,dWait,fuel,aTime,dTime,aPlanesDone,dPlanesDone,crashedPlanes);
 }
 
-void outputStats(int aPlanesTotal, int dPlanesTotal, Averager aWait, Averager dWait, int aPlanesDone, int dPlanesDone, int crashedPlanes){
+void outputStats(int aPlanesTotal, int dPlanesTotal, Averager aWait, Averager dWait, Averager fuel, Averager aTime, Averager dTime, int aPlanesDone, int dPlanesDone, int crashedPlanes){
     cout << "------------STATS-------------" << endl;
+    if(fuel.countNum() > 0) //Average for fuel (Not really necessary)
+        cout << "Average Fuel in Turns for Arrival: " << fuel.average() << " Turns." << endl;
+    if(aTime.countNum() > 0) //Average for fuel (Not really necessary)
+        cout << "Average Arrival Process Time: " << aTime.average() << " Turns." << endl;
+    if(dTime.countNum() > 0) //Average for fuel (Not really necessary)
+        cout << "Average Departure Process Time: " << dTime.average() << " Turns." << endl;
     if(aWait.countNum() > 0)
         cout << "Average Arrival Wait Time: " << aWait.average() << " Turns." << endl;
     if(dWait.countNum() > 0)

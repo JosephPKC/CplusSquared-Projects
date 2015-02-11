@@ -52,16 +52,16 @@ public:
     }
 
 //    template <class U>
-//    friend std::ostream& operator <<(std::ostream& out, const Queue<U>& S){
-//        Node<U>* walker = S.head;
-//        while(walker){
-//            std::cout << walker->item << " | ";
-//            walker = walker->next;
-//        }
-//        return out;
-//    }
+    friend std::ostream& operator <<(std::ostream& out, const Queue<T>& S){
+        Node<T>* walker = S.head;
+        while(walker){
+            std::cout << walker->item << " | ";
+            walker = walker->next;
+        }
+        return out;
+    }
 
-private:
+protected:
     Node<T>* head;
 };
 

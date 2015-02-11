@@ -13,5 +13,6 @@ HEADERS += \
     airport.h \
     Iterator.h \
     ListTools.h \
-    Queue.h
+    Queue.h \
+    PriorityQueue.h
 
