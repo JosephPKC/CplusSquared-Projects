@@ -1,0 +1,102 @@
+Pick an animal and I will try to guess which animal it is by asking a series of questions.
+Think of an animal, then press the return key.
+Are you a mammal? Please answer: Y/N
+y
+Do you live underwater? Please answer: Y/N
+n
+My guess is Kangaroo, Am I right? Y/N
+n
+I give up. What are you?
+Cat
+Please type a yes/no question that will distinguish a Cat from a Kangaroo.
+Your question:
+Are you a pet?
+As a Cat, Are you a pet?
+Please answer Y/N
+y
+Shall we play again? Y/N
+y
+Think of an animal, then press the return key.
+Are you a mammal? Please answer: Y/N
+n
+Are you a reptile? Please answer: Y/N
+n
+Are you nocturnal? Please answer: Y/N
+y
+My guess is Owl, Am I right? Y/N
+y
+I knew it all along!
+Shall we play again? Y/N
+n
+Press <RETURN> to close this window...
+
+
+Pick an animal and I will try to guess which animal it is by asking a series of questions.
+Think of an animal, then press the return key.
+Are you a mammal? Please answer: Y/N
+y
+Do you live underwater? Please answer: Y/N
+n
+Are you a pet? Please answer: Y/N
+y
+My guess is Cat, Am I right? Y/N
+
+y
+I knew it all along!
+Shall we play again? Y/N
+y
+Think of an animal, then press the return key.
+Are you a mammal? Please answer: Y/N
+n
+Are you a reptile? Please answer: Y/N
+n
+Are you nocturnal? Please answer: Y/N
+y
+My guess is Owl, Am I right? Y/N
+y
+I knew it all along!
+Shall we play again? Y/N
+n
+Press <RETURN> to close this window...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

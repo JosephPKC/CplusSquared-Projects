@@ -1,0 +1,7 @@
+()Whale
+()Kangaroo
+Do you live underwater?
+()Turtle
+()Falcon
+Are you a reptile?
+Are you a mammal?

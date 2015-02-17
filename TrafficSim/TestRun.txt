@@ -1,0 +1,578 @@
+//Simulation with Default Constant Parameters
+Turns for Arrivals to Process: 2 - 6 turns.
+Turns for Departures to Process: 1 - 5 turns.
+Average Number of Turns for 1 Arrival: 4 turns.
+Average Number of Turns for 1 Departure: 6 turns.
+Total turns: 60
+T: 1
+
+Arrivals:
+Departures:
+T: 2
+
+Arrivals:
+Departures:
+T: 3
+
+Arrivals:
+Departures:
+T: 4
+New Arrival: 4 with fuel: 9
+
+Arrivals: (9,4) |
+Departures:
+T: 5
+New Arrival: 5 with fuel: 10
+
+Arrivals: (10,5) |
+Departures:
+T: 6
+
+Arrivals: (10,5) |
+Departures:
+T: 7
+
+Arrivals: (10,5) |
+Departures:
+T: 8
+
+Arrivals:
+Departures:
+T: 9
+
+Arrivals:
+Departures:
+T: 10
+New Arrival: 10 with fuel: 14
+
+Arrivals: (14,10) |
+Departures:
+T: 11
+
+Arrivals: (14,10) |
+Departures:
+T: 12
+
+Arrivals:
+Departures:
+T: 13
+
+Arrivals:
+Departures:
+T: 14
+New Arrival: 14 with fuel: 17
+
+Arrivals: (17,14) |
+Departures:
+T: 15
+New Arrival: 15 with fuel: 22
+
+Arrivals: (22,15) |
+Departures:
+T: 16
+New Departure: 16
+
+Arrivals: (22,15) |
+Departures: 16 |
+T: 17
+New Departure: 17
+
+Arrivals: (22,15) |
+Departures: 16 | 17 |
+T: 18
+
+Arrivals: (22,15) |
+Departures: 16 | 17 |
+T: 19
+New Arrival: 19 with fuel: 24
+
+Arrivals: (22,15) | (24,19) |
+Departures: 16 | 17 |
+T: 20
+New Departure: 20
+
+Arrivals: (24,19) |
+Departures: 16 | 17 | 20 |
+T: 21
+
+Arrivals: (24,19) |
+Departures: 16 | 17 | 20 |
+T: 22
+
+Arrivals: (24,19) |
+Departures: 16 | 17 | 20 |
+T: 23
+
+Arrivals: (24,19) |
+Departures: 16 | 17 | 20 |
+T: 24
+New Departure: 24
+
+Arrivals: (24,19) |
+Departures: 16 | 17 | 20 | 24 |
+T: 25
+New Arrival: 25 with fuel: 31
+
+Arrivals: (24,19) | (31,25) |
+Departures: 16 | 17 | 20 | 24 |
+CRASHED
+T: 26
+New Departure: 26
+
+Arrivals:
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 27
+New Arrival: 27 with fuel: 31
+
+Arrivals: (31,27) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 28
+
+Arrivals: (31,27) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 29
+
+Arrivals:
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 30
+New Arrival: 30 with fuel: 36
+
+Arrivals: (36,30) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 31
+New Arrival: 31 with fuel: 36
+
+Arrivals: (36,30) | (36,31) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 32
+
+Arrivals: (36,31) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 33
+New Arrival: 33 with fuel: 38
+
+Arrivals: (36,31) | (38,33) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 34
+
+Arrivals: (36,31) | (38,33) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 35
+New Arrival: 35 with fuel: 39
+
+Arrivals: (36,31) | (38,33) | (39,35) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 36
+
+Arrivals: (38,33) | (39,35) |
+Departures: 16 | 17 | 20 | 24 | 26 |
+T: 37
+New Arrival: 37 with fuel: 44
+New Departure: 37
+
+Arrivals: (38,33) | (39,35) | (44,37) |
+Departures: 16 | 17 | 20 | 24 | 26 | 37 |
+T: 38
+
+Arrivals: (38,33) | (39,35) | (44,37) |
+Departures: 16 | 17 | 20 | 24 | 26 | 37 |
+T: 39
+
+Arrivals: (38,33) | (39,35) | (44,37) |
+Departures: 16 | 17 | 20 | 24 | 26 | 37 |
+CRASHED
+CRASHED
+T: 40
+
+Arrivals:
+Departures: 16 | 17 | 20 | 24 | 26 | 37 |
+T: 41
+New Departure: 41
+
+Arrivals:
+Departures: 16 | 17 | 20 | 24 | 26 | 37 | 41 |
+T: 42
+
+Arrivals:
+Departures: 16 | 17 | 20 | 24 | 26 | 37 | 41 |
+T: 43
+
+Arrivals:
+Departures: 17 | 20 | 24 | 26 | 37 | 41 |
+T: 44
+
+Arrivals:
+Departures: 17 | 20 | 24 | 26 | 37 | 41 |
+T: 45
+
+Arrivals:
+Departures: 17 | 20 | 24 | 26 | 37 | 41 |
+T: 46
+New Arrival: 46 with fuel: 53
+
+Arrivals: (53,46) |
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 47
+
+Arrivals: (53,46) |
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 48
+
+Arrivals:
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 49
+
+Arrivals:
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 50
+New Arrival: 50 with fuel: 55
+
+Arrivals: (55,50) |
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 51
+
+Arrivals: (55,50) |
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 52
+New Arrival: 52 with fuel: 58
+
+Arrivals: (55,50) | (58,52) |
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 53
+
+Arrivals: (58,52) |
+Departures: 20 | 24 | 26 | 37 | 41 |
+T: 54
+New Arrival: 54 with fuel: 61
+New Departure: 54
+
+Arrivals: (58,52) | (61,54) |
+Departures: 20 | 24 | 26 | 37 | 41 | 54 |
+T: 55
+
+Arrivals: (58,52) | (61,54) |
+Departures: 20 | 24 | 26 | 37 | 41 | 54 |
+T: 56
+
+Arrivals: (58,52) | (61,54) |
+Departures: 20 | 24 | 26 | 37 | 41 | 54 |
+T: 57
+
+Arrivals: (61,54) |
+Departures: 20 | 24 | 26 | 37 | 41 | 54 |
+T: 58
+
+Arrivals: (61,54) |
+Departures: 20 | 24 | 26 | 37 | 41 | 54 |
+T: 59
+New Arrival: 59 with fuel: 65
+
+Arrivals: (61,54) | (65,59) |
+Departures: 20 | 24 | 26 | 37 | 41 | 54 |
+T: 60
+New Departure: 60
+
+Arrivals: (61,54) | (65,59) |
+Departures: 20 | 24 | 26 | 37 | 41 | 54 | 60 |
+------------STATS-------------
+Average Fuel in Turns for Arrival: 5.38889 Turns.
+Average Arrival Process Time: 4.07692 Turns.
+Average Departure Process Time: 2.5 Turns.
+Average Arrival Wait Time: 1.69231 Turns.
+Average Departure Wait Time: 27 Turns.
+Total Planes: 27 Planes.
+Total Arrivals: 18 Planes.
+Number of Arrivals processed: 13 Planes.
+Number of Arrivals still waiting: 2 Planes.
+Number of Crashed Arrival Planes: 3 Planes.
+Total Departures: 9 Planes.
+Number of Departures processed: 2 Planes.
+Number of Departures still waiting: 7 Planes.
+Arrival Efficiency: 72.2222%.
+Departure Efficiency: 22.2222%.
+Total Efficiency: 55.5556%.
+Press <RETURN> to close this window...
+
+
+
+
+//Simulation with User Input Parameters
+Enter Average Turns for One Arrival: 6
+Enter Average Turns for One Departure: 4
+Enter Maximum Arrival Process Time: 7
+Enter Minimum Arrival Process Time: 2
+Enter Maximum Departure Process Time: 8
+Enter Minimum Departure Process Time: 4
+Enter Maximum Fuel Capacity in Turns: 10
+Enter Minimum Fuel Capacity in Tuns: 1
+Enter Number of Turns to Simulate: 50
+Turns for Arrivals to Process: 2 - 7 turns.
+Turns for Departures to Process: 4 - 8 turns.
+Average Number of Turns for 1 Arrival: 6 turns.
+Average Number of Turns for 1 Departure: 4 turns.
+Total turns: 50
+T: 1
+
+Arrivals:
+Departures:
+T: 2
+New Arrival: 2 with fuel: 7
+
+Arrivals: (7,2) |
+Departures:
+T: 3
+
+Arrivals:
+Departures:
+T: 4
+
+Arrivals:
+Departures:
+T: 5
+
+Arrivals:
+Departures:
+T: 6
+
+Arrivals:
+Departures:
+T: 7
+
+Arrivals:
+Departures:
+T: 8
+
+Arrivals:
+Departures:
+T: 9
+
+Arrivals:
+Departures:
+T: 10
+
+Arrivals:
+Departures:
+T: 11
+New Departure: 11
+
+Arrivals:
+Departures: 11 |
+T: 12
+New Arrival: 12 with fuel: 19
+
+Arrivals: (19,12) |
+Departures:
+T: 13
+New Departure: 13
+
+Arrivals: (19,12) |
+Departures: 13 |
+T: 14
+
+Arrivals: (19,12) |
+Departures: 13 |
+T: 15
+New Departure: 15
+
+Arrivals: (19,12) |
+Departures: 13 | 15 |
+T: 16
+New Arrival: 16 with fuel: 21
+
+Arrivals: (19,12) | (21,16) |
+Departures: 13 | 15 |
+T: 17
+
+Arrivals: (21,16) |
+Departures: 13 | 15 |
+T: 18
+
+Arrivals: (21,16) |
+Departures: 13 | 15 |
+T: 19
+New Arrival: 19 with fuel: 23
+New Departure: 19
+
+Arrivals: (21,16) | (23,19) |
+Departures: 13 | 15 | 19 |
+T: 20
+
+Arrivals: (21,16) | (23,19) |
+Departures: 13 | 15 | 19 |
+T: 21
+
+Arrivals: (23,19) |
+Departures: 13 | 15 | 19 |
+T: 22
+
+Arrivals: (23,19) |
+Departures: 13 | 15 | 19 |
+T: 23
+
+Arrivals: (23,19) |
+Departures: 13 | 15 | 19 |
+T: 24
+New Arrival: 24 with fuel: 28
+
+Arrivals: (23,19) | (28,24) |
+Departures: 13 | 15 | 19 |
+CRASHED
+T: 25
+New Departure: 25
+
+Arrivals:
+Departures: 13 | 15 | 19 | 25 |
+T: 26
+
+Arrivals:
+Departures: 13 | 15 | 19 | 25 |
+T: 27
+
+Arrivals:
+Departures: 13 | 15 | 19 | 25 |
+T: 28
+
+Arrivals:
+Departures: 13 | 15 | 19 | 25 |
+T: 29
+
+Arrivals:
+Departures: 15 | 19 | 25 |
+T: 30
+
+Arrivals:
+Departures: 15 | 19 | 25 |
+T: 31
+New Departure: 31
+
+Arrivals:
+Departures: 15 | 19 | 25 | 31 |
+T: 32
+New Departure: 32
+
+Arrivals:
+Departures: 15 | 19 | 25 | 31 | 32 |
+T: 33
+New Arrival: 33 with fuel: 38
+
+Arrivals: (38,33) |
+Departures: 15 | 19 | 25 | 31 | 32 |
+T: 34
+
+Arrivals: (38,33) |
+Departures: 15 | 19 | 25 | 31 | 32 |
+T: 35
+New Arrival: 35 with fuel: 43
+New Departure: 35
+
+Arrivals: (38,33) | (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 |
+T: 36
+New Departure: 36
+
+Arrivals: (38,33) | (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 |
+T: 37
+
+Arrivals: (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 |
+T: 38
+
+Arrivals: (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 |
+T: 39
+New Departure: 39
+
+Arrivals: (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 | 39 |
+T: 40
+
+Arrivals: (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 | 39 |
+T: 41
+
+Arrivals: (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 | 39 |
+T: 42
+
+Arrivals: (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 | 39 |
+T: 43
+
+Arrivals: (43,35) |
+Departures: 15 | 19 | 25 | 31 | 32 | 35 | 36 | 39 |
+CRASHED
+T: 44
+New Departure: 44
+
+Arrivals:
+Departures: 19 | 25 | 31 | 32 | 35 | 36 | 39 | 44 |
+T: 45
+
+Arrivals:
+Departures: 19 | 25 | 31 | 32 | 35 | 36 | 39 | 44 |
+T: 46
+New Arrival: 46 with fuel: 52
+
+Arrivals: (52,46) |
+Departures: 19 | 25 | 31 | 32 | 35 | 36 | 39 | 44 |
+T: 47
+
+Arrivals: (52,46) |
+Departures: 19 | 25 | 31 | 32 | 35 | 36 | 39 | 44 |
+T: 48
+
+Arrivals: (52,46) |
+Departures: 19 | 25 | 31 | 32 | 35 | 36 | 39 | 44 |
+T: 49
+
+Arrivals: (52,46) |
+Departures: 19 | 25 | 31 | 32 | 35 | 36 | 39 | 44 |
+T: 50
+
+Arrivals: (52,46) |
+Departures: 19 | 25 | 31 | 32 | 35 | 36 | 39 | 44 |
+------------STATS-------------
+Average Fuel in Turns for Arrival: 5.5 Turns.
+Average Arrival Process Time: 5.5 Turns.
+Average Departure Process Time: 6.66667 Turns.
+Average Arrival Wait Time: 2.5 Turns.
+Average Departure Wait Time: 14.3333 Turns.
+Total Planes: 19 Planes.
+Total Arrivals: 8 Planes.
+Number of Arrivals processed: 6 Planes.
+Number of Arrivals still waiting: 0 Planes.
+Number of Crashed Arrival Planes: 2 Planes.
+Total Departures: 11 Planes.
+Number of Departures processed: 3 Planes.
+Number of Departures still waiting: 8 Planes.
+Arrival Efficiency: 75%.
+Departure Efficiency: 27.2727%.
+Total Efficiency: 47.3684%.
+Press <RETURN> to close this window...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

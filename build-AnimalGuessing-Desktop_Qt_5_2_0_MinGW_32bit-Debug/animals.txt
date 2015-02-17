@@ -1,0 +1,13 @@
+()Whale
+()Cat
+()Kangaroo
+Are you a pet?
+Do you live underwater?
+()Dragon
+()Turtle
+Are you mythical?
+()Owl
+()Falcon
+Are you nocturnal?
+Are you a reptile?
+Are you a mammal?

@@ -13,21 +13,21 @@ ostream& operator <<(ostream& out, const std::pair<T,U> P){
 
 //TODO: Change aQueue into a Priority Queue//--------------------------------
 //Constants for use without input function
-const int LAND_AVERAGE = 7;
-const int TAKEOFF_AVERAGE = 9;
+const int LAND_AVERAGE = 4;
+const int TAKEOFF_AVERAGE = 6;
 //const int LAND_TIME = 5;
 //const int TAKEOFF_TIME = 4;
-const int NUM_OF_TURNS = 100;
-const int FUEL_MAX = 8;
+const int NUM_OF_TURNS = 60;
+const int FUEL_MAX = 7;
 const int FUEL_MIN = 2;
-const int LAND_MAX = 5;
-const int LAND_MIN = 3;
-const int TAKE_MAX = 6;
-const int TAKE_MIN = 3;
+const int LAND_MAX = 6;
+const int LAND_MIN = 2;
+const int TAKE_MAX = 5;
+const int TAKE_MIN = 1;
 //Pre: Use for before simulation in order to set parameters
 //Process: Grabs parameters from user
 //Post: There are no default values for parameters so all of them must be set
-void inputValues(int& aAve, int& dAve, int& aT, int& dT, int& maxTurns, int& fuelMax, int& fuelMin);
+void inputValues(int& aAve, int& dAve, int& aMax, int& aMin, int& tMax, int& tMin, int& maxTurns, int& fuelMax, int& fuelMin);
 //Pre: Requires the values from either input or preset constants
 //Process: Simulates Air Traffic
 //Post: Prints out relevant statistics at the end of the simulation
@@ -42,23 +42,27 @@ int generateRandom(int max, int min);
 void outputStats(int aPlanesTotal, int dPlanesTotal, Averager aWait, Averager dWait, Averager fuel, Averager aTime, Averager dTime, int aPlanesDone, int dPlanesDone, int crashedPlanes);
 
 int main(){
-//    int aAve, dAve, aT, dT, maxTurns, fuelMax, fuelMin;
+    int aAve, dAve, maxTurns, fuelMax, fuelMin, aMax, aMin, tMax, tMin;
     srand(time(NULL));
-//    inputValues(aAve,dAve,aT,dT,maxTurns,fuelMax,fuelMin);
-//    simulateAirTraffic(aAve,dAve,aT,dT,maxTurns,fuelMax,fuelMin);
-    simulateAirTraffic(LAND_AVERAGE,TAKEOFF_AVERAGE,LAND_MAX,LAND_MIN,TAKE_MAX,TAKE_MIN,NUM_OF_TURNS,FUEL_MAX,FUEL_MIN);
+    inputValues(aAve,dAve,aMax,aMin,tMax,tMin,maxTurns,fuelMax,fuelMin);
+    simulateAirTraffic(aAve,dAve,aMax,aMin,tMax,tMin,maxTurns,fuelMax,fuelMin);
+  //  simulateAirTraffic(LAND_AVERAGE,TAKEOFF_AVERAGE,LAND_MAX,LAND_MIN,TAKE_MAX,TAKE_MIN,NUM_OF_TURNS,FUEL_MAX,FUEL_MIN);
     return 0;
 }
 
-void inputValues(int& aAve, int& dAve, int& aT, int& dT, int& maxTurns, int& fuelMax, int& fuelMin){
+void inputValues(int& aAve, int& dAve, int& aMax, int& aMin, int& tMax, int& tMin, int& maxTurns, int& fuelMax, int& fuelMin){
     cout << "Enter Average Turns for One Arrival: ";
     cin >> aAve;
     cout << "Enter Average Turns for One Departure: ";
     cin >> dAve;
-    cout << "Enter Number of Turns for Landing: ";
-    cin >> aT;
-    cout << "Enter Number of Turns for Take Off: ";
-    cin >> dT;
+    cout << "Enter Maximum Arrival Process Time: ";
+    cin >> aMax;
+    cout << "Enter Minimum Arrival Process Time: ";
+    cin >> aMin;
+    cout << "Enter Maximum Departure Process Time: ";
+    cin >> tMax;
+    cout << "Enter Minimum Departure Process Time: ";
+    cin >> tMin;
     cout << "Enter Maximum Fuel Capacity in Turns: ";
     cin >> fuelMax;
     cout << "Enter Minimum Fuel Capacity in Tuns: ";
@@ -90,30 +94,30 @@ void simulateAirTraffic(int aAve, int dAve, int aMax, int aMin, int tMax, int tM
     int dPlanesTotal = 0; //Total departures
     int aPlanesDone = 0; //Number of arrivals processed
     int dPlanesDone = 0; //Number of departures processed
-    cout << "Seconds to arrive: " << aMin << " - " << aMax << endl;
-    cout << "Seconds to depart: " << tMin << " - " << tMax << endl;
-    cout << "Average arrival per turn: " << aAve << endl;
-    cout << "Average departure per turn: " << dAve << endl;
+    cout << "Turns for Arrivals to Process: " << aMin << " - " << aMax << " turns." << endl;
+    cout << "Turns for Departures to Process: " << tMin << " - " << tMax << " turns." << endl;
+    cout << "Average Number of Turns for 1 Arrival: " << aAve << " turns." << endl;
+    cout << "Average Number of Turns for 1 Departure: " << dAve << " turns." << endl;
     cout << "Total turns: " << maxTurns << endl;
 
     //The main simulation loop
     for(int currentTurn = 1; currentTurn <= maxTurns; currentTurn++){
-        cout << "---------------------------------------" << endl;
+//        cout << "---------------------------------------" << endl;
 //        cout << "Turn: " << currentTurn << endl;
         cout << "T: " << currentTurn << " " << endl;
         //Check for arrival/departure
         if(arrival.generate()){ //Checking for arrival
             int fuelAmount = generateRandom(fuelMax,fuelMin);
             aQueue.push(std::make_pair( fuelAmount + currentTurn,currentTurn)); //Add to queue
-//            cout << "New Arrival: " << currentTurn << " with fuel: " << fuelAmount + currentTurn << endl;
-            cout << "New Arrival ";
+            cout << "New Arrival: " << currentTurn << " with fuel: " << fuelAmount + currentTurn << endl;
+//            cout << "New Arrival ";
             aPlanesTotal++;
             fuel.addNum(fuelAmount);
         }
         if(departure.generate()){ //Checking for departure
             dQueue.push(currentTurn); //Add to queue
-//            cout << "New Departure: " << currentTurn << endl;
-            cout << "New Departure ";
+            cout << "New Departure: " << currentTurn << endl;
+//            cout << "New Departure ";
             dPlanesTotal++;
         }
         cout << endl;
