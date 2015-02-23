@@ -7,6 +7,12 @@ void remove(TreeNode<int>* root, int element);
 TreeNode<int>* search(TreeNode<int>* root, int element);
 void print(TreeNode<int>* root);
 
+struct Printer{
+    void operator ()(TreeNode<int> tn){
+        cout << tn << " ";
+    }
+};
+
 //If its greater than root, go right
 //If its less than root, go left
 int main()
@@ -17,7 +23,8 @@ int main()
     insert(root,-1);
     insert(root,0);
     cout << "The tree: " << endl;
-    print(root,0);
+    print(root);
+    cout << endl;
 //    remove(root,0);
 //    print(root,0);
     cout << *search(root,2) << endl;
@@ -43,7 +50,11 @@ void insert(TreeNode<int>* root, int element){
 }
 
 void remove(TreeNode<int>* root, int element){
-
+    //Find the first instance of that element
+    //Find the left child of that element
+    //Find the rightmost child of that child
+    //swap the child with the element
+    //delete the element (post-swap)
 }
 
 TreeNode<int>* search(TreeNode<int>* root, int element){
@@ -58,5 +69,5 @@ TreeNode<int>* search(TreeNode<int>* root, int element){
 }
 
 void print(TreeNode<int>* root){
-
+    inOrder(Printer(),root);
 }
