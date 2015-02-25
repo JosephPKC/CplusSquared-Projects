@@ -80,6 +80,7 @@ void print(TreeNode<Item>* root, Size depth){
 
 template <typename Item>
 void clear(TreeNode<Item>*& root){
+    std::cout << "In clear" << std::endl;
     TreeNode<Item>* branch;
     if(root != NULL){
         branch = root->left(); //Clear all of the left branches
