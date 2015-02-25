@@ -32,15 +32,15 @@ int main()
 //    print(root,0);
 //    cout << *search(root,2) << endl;
 //    cout << "Right most of root: " << *getRightMost(root) << endl;
-//    remove(root,3);
-//    print(root);
-//    cout << endl;
-//    remove(root,0);
-//    print(root);
-//    cout << endl;
-//    remove(root,-1);
-//    print(root);
-    cout << "The parent: " <<  *getParent(root,search(root,2)) << endl;
+    remove(root,3);
+    print(root);
+    cout << endl;
+    remove(root,0);
+    print(root);
+    cout << endl;
+    remove(root,-1);
+    print(root);
+//    cout << "The parent: " <<  *getParent(root,search(root,2)) << endl;
     return 0;
 }
 
@@ -74,11 +74,53 @@ void remove(TreeNode<int>*& root, int element){
     //case 2: If the rightmost child is the same as leftchild, then delete element and set its parent to leftchild
     TreeNode<int>* found = search(root,element);
     if(!found) return;
+    if(found->isLeaf()){
+        TreeNode<int>* parent = getParent(root,found);
+        if(!parent){ //If it has no parent, then it is the root
+            delete found;
+            root = NULL;
+            return;
+        }
+        if(found->data() >= parent->data()) parent->setRight(NULL);
+        else if(found->data() < parent->data()) parent->setLeft(NULL);
+        delete found;
+    }
     TreeNode<int>* leftChild = found->left();
     if(!leftChild){
-
+        TreeNode<int>* parent = getParent(root,found);
+        if(!parent) { //If it has no parent, then it is the root
+            root = root->right();
+            delete found;
+        }
+        else{
+            parent->setLeft(found->right());
+            delete found;
+        }
     }
-
+    else{
+        TreeNode<int>* rightMost = getRightMost(leftChild); //right child should be null
+        if(rightMost == leftChild){
+            swap(found->data(),rightMost->data());
+            found->setLeft(rightMost->left());
+            delete rightMost;
+        }
+        else{
+            swap(found->data(),rightMost->data());
+            TreeNode<int>* parent = getParent(root,rightMost);
+            if(!parent){ //Then for some reason, the rightmost child of the left child of the found node is the root WHICH SHOULD NOT BE POSSIBLE
+                cout << "Someone messed up" << endl;
+            }
+            else{
+                parent->setRight(rightMost->left());
+                delete rightMost;
+            }
+        }
+    }
+    //Search for node
+    //If node does not exist, nothing. If it does proceed:
+    //If node has no children, delete and set parent branch to null
+    //If node has only one child, then set node parent branch to child and delete node
+    //If node has two children, then ???
 
 }
 
@@ -88,14 +130,21 @@ TreeNode<int>* getParent(TreeNode<int>* root, TreeNode<int>* branch){
     cout << "Root: " << *root << endl;
     TreeNode<int>* r = root->right();
     TreeNode<int>* l = root->left();
-    cout << "RC: " << *r << endl;
-    cout << "LC: " << *l << endl;
+    if(r) cout << "RC: " << *r << endl;
+    else cout << "RC: NULL" << endl;
+    if(l) cout << "LC: " << *l << endl;
+    else cout  << "LC: NULL" << endl;
     cout << "&B: " << &branch << endl;
     cout << "&R: " << &r << endl;
     cout << "&L: " << &l << endl;
+    if(branch == root) return NULL;
     if(branch == root->right() || branch == root->left()){
+        cout << "We found the parent: " << *root << endl;
         return root;
     }
+    cout << "Mid" << endl;
+    cout << "Branch Data: " << branch->data() << endl;
+    cout << "Root Data: " << root->data() << endl;
     if(branch->data() >  root->data()){
         cout << "Right" << endl;
         return getParent(root->right(),branch);
