@@ -14,12 +14,27 @@ int main()
     BST.insertT(4);
     BST.insertT(8);
     BST.print();
+    cout << BST.sizeT() << endl;
+    BST.removeT(10);
+    BST.print();
     BST.removeT(5);
     BST.print();
     BST.removeT(3);
     BST.print();
     BST.removeT(7);
-//    BST.print();
+    BST.print();
+    BST.removeT(4);
+    BST.print();
+    BST.removeT(8);
+    BST.print();
+    BST.removeT(1);
+    BST.print();
+    BST.removeT(3);
+    BST.print();
+    BST.removeT(0);
+    BST.print();
+    std::cout << BST.sizeT() << std::endl;
+
     return 0;
 }
 

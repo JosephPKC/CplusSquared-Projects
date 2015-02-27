@@ -8,9 +8,3 @@ SOURCES += main.cpp
 include(deployment.pri)
 qtcAddDeployment()
 
-HEADERS += \
-    BinarySearchTree.h \
-    BinaryTreeTools.h \
-    Heap.h \
-    BTree.h
-

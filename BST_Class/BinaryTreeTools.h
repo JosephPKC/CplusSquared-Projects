@@ -35,6 +35,7 @@ public:
     bool hasRight() const           {return _right;}
     template <typename Other>
     friend std::ostream& operator <<(std::ostream& out, const TreeNode<Other>& T){
+
         out << T.data() << ":(";
         if(T.left()) out << *T.left() << "),(";
         if(T.right()) out << *T.right();
