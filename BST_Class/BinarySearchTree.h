@@ -58,28 +58,12 @@ TreeNode<Item>* BinarySearchTree<Item,OrderC>::getRightMost(TreeNode<Item> *root
 
 template <typename Item, typename OrderC> //Add OrderC argument and change the less/greater ifs to OrderC //TODO find a way to implement this
 TreeNode<Item>* BinarySearchTree<Item,OrderC>::getParent(TreeNode<Item> *root, TreeNode<Item>* branch){
-    if(root) std::cout << "Root in gp: " << *root << std::endl;
-    else std::cout << "Root in gp: NULL" << std::endl;
-    if(branch) std::cout << "Branch in gp: " << *branch << std::endl;
-    else std::cout << "Branch in gp: NULL" << std::endl;
-    if(root->right()) std::cout << "Root->Right in gp: " << *root->right() << std::endl;
-    else std::cout << "Root->Right in gp: NULL" << std::endl;
-    if(root->left()) std::cout << "Root->Left in gp: " << *root->left() << std::endl;
-    else std::cout << "Root->Left in gp: NULL" << std::endl;
-    std::cout << "Branch == Root->Child: " << (branch == root->right()?"Yes":"No") << std::endl;
-    std::cout << "Branch == Root: " << (branch == root?"Yes":"No") << std::endl;
     if(!root) return NULL; //If the root is NULL or if recursive hits NULL
     if(branch == root) return NULL; //If the branch is the root, then it has no parent
-    if(branch == root->right() || branch == root->left()){ //If the branch is the child of the 'root' then the 'root' is the parent
-        std::cout << "FOUND PARENT" << std::endl;
+    if(branch == root->right() || branch == root->left()) //If the branch is the child of the 'root' then the 'root' is the parent
         return root;
-    }
-    std::cout << "In between" << std::endl;
     if(branch->data() >  root->data()){ //If the branch is greater than the root, dig into the right
-
          TreeNode<Item>* p = getParent(root->right(),branch);
-         if(p) std::cout << "Parent in gp: " << *p << std::endl;
-         else std::cout << "Parent in gp: NULL" << std::endl;
          return p;
     }
     else if(branch->data() < root->data()) //else dig into the left
@@ -87,16 +71,12 @@ TreeNode<Item>* BinarySearchTree<Item,OrderC>::getParent(TreeNode<Item> *root, T
 }
 template <typename Item, typename OrderC>
 void BinarySearchTree<Item,OrderC>::insert(TreeNode<Item>* root, const Item& element){
-    std::cout << "In insert" << std::endl;
-    std::cout << (root != NULL?"Not Null":"Null") << std::endl;
     if(!root) return;
     if(element >= root->data()){
-        std::cout << "Right" << std::endl;
         if(!root->right()) root->setRight(new TreeNode<Item>(element));
         else insert(root->right(),element);
     }
     else if(element < root->data()){
-        std::cout << "Left" << std::endl;
         if(!root->left()) root->setLeft(new TreeNode<Item>(element));
         else insert(root->left(),element);
     }
@@ -107,14 +87,10 @@ void BinarySearchTree<Item,OrderC>::remove(TreeNode<Item>*& root, const Item& el
     TreeNode<Item>* found = search(root,element);
     if(!found) return;
     if(found->isLeaf()){
-        std::cout << "In is leaf" << std::endl;
         TreeNode<Item>* parent = getParent(root,found);
         if(!parent){ //If it has no parent, then it is the root
-            std::cout << "Parent is nULL as leaf" << std::endl;
             delete found;
-            std::cout << "after delete found" << std::endl;
             root = NULL;
-            std::cout << "after root = NULL" << std::endl;
             return;
         }
         if(found->data() >= parent->data()) parent->setRight(NULL);
@@ -122,45 +98,34 @@ void BinarySearchTree<Item,OrderC>::remove(TreeNode<Item>*& root, const Item& el
         delete found;
         return;
     }
-    std::cout << "after isleaf" << std::endl;
     TreeNode<Item>* leftChild = found->left();
     if(!leftChild){
         TreeNode<Item>* parent = getParent(root,found);
 //        std::cout << "Left Child: " << *leftChild << std::endl;
 //        std::cout << "Right Most Child: " << *rightMost << std::endl;
-        if(found) std::cout << "Found: " << *found << std::endl;
-        else std::cout << "Found: NULL" << std::endl;
-        if(parent) std::cout << "Parent: " << *parent << std::endl;
-        else std::cout << "Parent: NULL" << std::endl;
         if(!parent) { //If it has no parent, then it is the root
             root = root->right();
             delete found;
         }
         else{
-            std::cout << "Found Right: " << *found->right() << std::endl;
-            std::cout << "FOund: " << *found << std::endl;
             parent->setRight(found->right());
-            std::cout << "The parent linking: " << *parent << std::endl;
             delete found; //causes crash
         }
     }
     else{
         TreeNode<Item>* rightMost = getRightMost(leftChild); //right child should be null
         if(rightMost == leftChild){
-            swap(found->data(),rightMost->data());
+            bst::swap(found->data(),rightMost->data());
             found->setLeft(rightMost->left());
             delete rightMost;
         }
         else{
-            std::cout << "Left Child: " << *leftChild << std::endl;
-            std::cout << "Right Most Child: " << *rightMost << std::endl;
-            std::cout << "Found: " << *found << std::endl;
             TreeNode<Item>* parent = getParent(root,rightMost);
             if(!parent){ //Then for some reason, the rightmost child of the left child of the found node is the root WHICH SHOULD NOT BE POSSIBLE
                 std::cout << "Someone messed up" << std::endl;
             }
             else{
-                swap(found->data(),rightMost->data());
+                bst::swap(found->data(),rightMost->data());
                 parent->setRight(rightMost->left());
                 delete rightMost;
             }

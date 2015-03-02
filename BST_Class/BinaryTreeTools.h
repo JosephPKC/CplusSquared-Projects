@@ -122,17 +122,72 @@ struct Lesser{
 
 template <typename Item>
 struct Printer{
-    void operator ()(TreeNode<Item> tn){
+    void operator ()(const Item& tn){
         std::cout << tn << " ";
     }
 };
 
-template <typename Val>
-void swap(Val& a, Val& b){
-    Val temp(a);
-    a = b;
-    b = temp;
+template <typename Item>
+struct Greq{
+    bool operator ()(const Item& lhs, const Item& rhs){
+        return lhs >= rhs;
+    }
+};
+
+namespace bst{
+    template <typename Val>
+    void swap(Val& a, Val& b){
+        Val temp(a);
+        a = b;
+        b = temp;
+    }
+
+    template <typename Type>
+    void copy(const Type* source, Type* dest, std::size_t size){ //Does not check for size//Make sure it is valid and theres room beforehand
+        for(int i = 0; i < size; i++){
+            dest[i] = source[i];
+        }
+    }
+
+    template <typename Type>
+    void copy(Type* source, Type* dest, std::size_t size, int sPos, int ePos){ //Does not check for size//Make sure it is valid and theres room beforehand
+        for(int i = sPos; i < size && i <= ePos; i++)
+            dest[i - sPos] = source[i];
+    }
+
+    template <typename Item, typename Order>
+    std::size_t firstCondOf(Item* a, std::size_t size, const Item& target, Order Ord){
+        for(int i = 0; i < size; i++)
+            if(Ord(a[i],target)) return i;
+        return -1;
+    }
+
+    template <typename Item>
+    void shiftRight(Item* a, std::size_t& size, int pos){
+        for(int i = size - 1; i >= pos; i--){
+            a[i + 1] = a[i];
+        }
+        size++;
+    }
+
+    template <typename Item>
+    void shiftLeft(Item* a, std::size_t& size, int pos){
+        for(int i = pos; i < size - 1; i++)
+            a[i] = a[i + 1];
+        size--;
+    }
+
+    template <typename Item, typename Process>
+    void traverse(Item* a, std::size_t size, Process P){
+        for(int i = 0; i < size; i++)
+            P(a[i]);
+    }
+
+    template <typename Item>
+    void merge(Item* a, Item* b, std::size_t& sizeA, std::size_t sizeB){
+        for(int i = sizeA; i < sizeB; i++)
+            a[i] = b[i - sizeA];
+        sizeA += sizeB;
+    }
 }
-
-
 #endif // BINARYTREETOOLS_H

@@ -12,5 +12,6 @@ HEADERS += \
     BinarySearchTree.h \
     BinaryTreeTools.h \
     Heap.h \
-    BTree.h
+    BTree.h \
+    Set.h
 
