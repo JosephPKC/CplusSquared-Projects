@@ -1,0 +1,147 @@
+Enter: (I)nsert, (D)elete, or (S)earch
+i5i9i2i22i4i0i7i11i8
+          5
+
+Enter: (I)nsert, (D)elete, or (S)earch
+               9
+          5
+
+Enter: (I)nsert, (D)elete, or (S)earch
+               9
+          5
+               2
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+               9
+          5
+               2
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+               9
+          5
+                    4
+               2
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+               9
+          5
+                    4
+               2
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+               9
+                    7
+          5
+                    4
+               2
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+                         11
+               9
+                    7
+          5
+                    4
+               2
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+                         11
+               9
+                         8
+                    7
+          5
+                    4
+               2
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+i3i6i1i2i33
+                    22
+                         11
+               9
+                         8
+                    7
+          5
+                    4
+                         3
+               2
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+                         11
+               9
+                         8
+                    7
+                         6
+          5
+                    4
+                         3
+               2
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+                         11
+               9
+                         8
+                    7
+                         6
+          5
+                    4
+                         3
+               2
+                         1
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                    22
+                         11
+               9
+                         8
+                    7
+                         6
+          5
+                    4
+                         3
+               2
+                         1
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+                         33
+                    22
+                         11
+               9
+                         8
+                    7
+                         6
+          5
+                    4
+                         3
+               2
+                         1
+                    0
+
+Enter: (I)nsert, (D)elete, or (S)earch
+d5
+                         33
+                    22
+                         11
+               9
+                         8
+                    7
+                         6
+          4
+                    3
+               2
+                         1
+                    0

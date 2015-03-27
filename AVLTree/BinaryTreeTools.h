@@ -75,12 +75,12 @@ void postOrder(Process p, Node* ptr){
 template <typename Item, typename Size>
 void print(TreeNode<Item>* root, Size depth){
     if(root != NULL){
-        print(root->right(),depth + 3);
+        print(root->right(),depth + 5);
         for(int i = 0; i < depth; i++) std::cout << " ";
         std::cout << root->data(); /*<< "-"<< std::endl;*/
         for(int i = 0; i < depth; i++) std::cout << " ";
         std::cout << std::endl;
-        print(root->left(),depth + 3);
+        print(root->left(),depth + 5);
     }
 }
 
