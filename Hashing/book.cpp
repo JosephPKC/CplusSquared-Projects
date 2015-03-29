@@ -1,6 +1,6 @@
 #include "book.h"
 
-Book::Book(std::string title = "", std::string author = "", std::string isbn = ""){
+Book::Book(std::string title, std::string author, std::string isbn){
     _title = title;
     _author = author;
     _isbn = isbn;
@@ -30,8 +30,8 @@ void Book::setISBN(std::string isbn){
     _isbn = isbn;
 }
 
-int operator %(const Book& Source, int modifier) const{
-    return (int)Source._title + (int)Source._author + (int)Source._isbn % modifier;
+int operator %(const Book& Source, int modifier){
+//    return
 }
 
 std::ostream& operator <<(std::ostream& out, const Book& Source){

@@ -37,9 +37,9 @@ public:
         return *this;
     }
 
-    template <class Q>
-    friend std::ostream& operator <<(std::ostream& out, const List<Q>& L){
-        Node<Q>* walker = L.head;
+//    template <class Q>
+    friend std::ostream& operator <<(std::ostream& out, const List<T>& L){
+        Node<T>* walker = L.head;
         while(walker){
             out << walker->item << " | ";
             walker = walker->next;

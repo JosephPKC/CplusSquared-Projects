@@ -21,13 +21,13 @@ public:
 
 //    }
 
-    template <class Q>
-    friend bool operator ==(const Iterator<Q>& LS, const Iterator<Q>& RS){
+//    template <class Q>
+    friend bool operator ==(const Iterator<T>& LS, const Iterator<T>& RS){
         return LS.ptr == RS.ptr ? true : false;
     }
 
-    template <class Q>
-    friend bool operator != (const Iterator<Q>& LS, const Iterator<Q>& RS){
+//    template <class Q>
+    friend bool operator != (const Iterator<T>& LS, const Iterator<T>& RS){
         return LS.ptr != RS.ptr ? true : false;
     }
 
