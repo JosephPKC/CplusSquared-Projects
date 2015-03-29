@@ -3,12 +3,14 @@
 #include <iostream>
 #include "List.h"
 
+//Attempt at turning an object to an integer
 template <typename Item>
 struct Encode{ //Find a way to turn objects into integers
     int operator ()(const Item& I){
         return I % 7 << 2; //Define modulus for the item
     }
 };
+//General Hashing Function
 struct Hash{
     int _modulus;
     int _multiplier;
@@ -26,38 +28,46 @@ struct Hash{
 template <typename Item>
 class HTable{
 private:
-    List<Item>* _data = nullptr; //TODO: Change to an array of linked lists, with a vacant slot being an empty list
-        //Change to SortedList?
-    int _size;
-    int _capacity;
+    List<Item>* _data = nullptr; //Change to SortedList?
+    int _size; //size of the list
+    int _capacity; //Capacity
 
+    //Copy the source to destination
+    template <typename Type>
+    void copy(Type* source, Type* dest, std::size_t sourceLen){
+        for(std::size_t i = 0; i < sourceLen; i++){
+            dest[i] = source[i];
+        }
+    }
+    //Turns the item entry into an integer code
     template <typename Encode>
     int code(const Item& entry, Encode E) const{
         //Turn the item into an integer key
         return E(entry);
     }
-
+    //Hashes the integer key to an index
     template <typename Hash>
     std::size_t hash(int key, Hash H) const{
         //Turn the integer key into an index
         return H(key);
     }
-
+    //Checks for collision at the index
     bool collision(std::size_t index) const{
         //If index is not vacant //Other reasons for collision?
         return !isVacant(index);
     }
-
+    //Checks if the index is vacant
     bool isVacant(std::size_t index) const{
         if(_data[index].Empty()) return true;
         return false;
     }
-
+    //Handles the collision at the index with the item entry
     std::size_t handleCollision(const Item& entry, std::size_t index){
         //handle the collision in the index
         _data[index].insertE(entry); //This is just chained hashing //Originally it was double hash
         return index;
     }
+    //Gets the linked list that is connected to the key
     List<Item>* getList(int key) const{
         std::size_t index = hash(key,Hash(_capacity));
         if(isVacant(index)) return nullptr;
@@ -80,14 +90,14 @@ public:
         //Copy Other's Array to This Array
         //Copy Values of size and capacity
         _data = new List<Item>[Other._capacity];
-        //copy array from Other to _data
+        copy(Other._data,_data,Other._capacity);
         _size = Other._size;
         _capacity = Other._capacity;
     }
     HTable<Item>& operator =(const HTable<Item>& Other){
         //Same as copy constructor
         _data = new List<Item>[Other._capacity];
-        //copy array
+        copy(Other._data,_data,Other._capacity);
         _size = Other._size;
         _capacity = Other._capacity;
         return *this;
@@ -95,7 +105,7 @@ public:
     ~HTable(){
         delete[] _data;
     }
-
+    //Insert an entry to the list
     bool insert(const Item& entry){
         //If there is enough room
         //Convert entry to a key
@@ -116,7 +126,7 @@ public:
         }
         return true;
     }
-
+    //Remove an item from the list using the key
     bool remove(int key){
         using namespace std;
         //Hash the key
@@ -138,7 +148,7 @@ public:
         }
         return false; //Did not find the item with the key
     }
-
+    //Searches the key in the list
     Item* search(int key) const{
         //Hash the key
         //Check index for vacancy
@@ -151,19 +161,19 @@ public:
         }
         return nullptr;
     }
-
+    //Gets the size
     std::size_t size() const{
         return _size; //This is the number of items in the array
     }
-
+    //Gets the capacity
     std::size_t cap() const{
         return _capacity; //This is the amount of items that can fit in the table
     }
-
+    //CHecks if the key is present
     bool isPresent(int key) const{
         return !isVacant(hash(key,Hash(_capacity)));
     }
-
+    //Prints the table
     template <typename Item2>
     friend std::ostream& operator <<(std::ostream& out, const HTable<Item2>& Other){
         for(int i = 0; i < Other._capacity; i++){
@@ -174,6 +184,7 @@ public:
         }
         return out;
     }
+    //The Encoder that the table uses
     int key(const Item& entry) const{
         return code(entry,Encode<Item>());
     }

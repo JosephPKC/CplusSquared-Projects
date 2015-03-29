@@ -4,7 +4,8 @@ CONFIG -= app_bundle
 CONFIG -= qt
 CONFIG += c++11
 SOURCES += main.cpp \
-    book.cpp
+    book.cpp \
+    bookcatalogue.cpp
 
 include(deployment.pri)
 qtcAddDeployment()
@@ -14,5 +15,6 @@ HEADERS += \
     Iterator.h \
     List.h \
     ListTools.h \
-    book.h
+    book.h \
+    bookcatalogue.h
 

@@ -1,0 +1,168 @@
+//TESTING 12-3
+4
+{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ 1 |  }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|
+8
+{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ 1 |  }|{ VACANT }|{ VACANT }|{ VACANT }|{ 2 |  }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|
+{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ 1 |  }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|
+{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ 1 | 1 |  }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|{ VACANT }|
+
+//Testing 12-6
+INSERTING TEN BOOKS
+
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+
+
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+
+
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+
+
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+
+
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+
+
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+
+
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+
+
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Colonial Africa"; Dennis Laumann; 978-0-19-979639-7}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+
+
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Colonial Africa"; Dennis Laumann; 978-0-19-979639-7}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+{"Abina and the Important Men"; Trevor R. Getz; 978-0-19-984439-5}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+
+
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Colonial Africa"; Dennis Laumann; 978-0-19-979639-7}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6}|
+{"Abina and the Important Men"; Trevor R. Getz; 978-0-19-984439-5}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+{"Republican Protesntaism in Aztlan"; E.C.Orozco; 978-1-90053-6-32}|
+
+SEARCHING FOR BIOLOGY OF PLANTS
+"Biology of Plants"; Raven Evert Eichhorn; 1-57259-041-6
+
+REMOVING BIOLOGY OF PLANTS
+
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Colonial Africa"; Dennis Laumann; 978-0-19-979639-7}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Abina and the Important Men"; Trevor R. Getz; 978-0-19-984439-5}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+{"Republican Protesntaism in Aztlan"; E.C.Orozco; 978-1-90053-6-32}|
+
+PRINTING VIA AUTHOR
+{"Republican Protesntaism in Aztlan"; E.C.Orozco; 978-1-90053-6-32}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Abina and the Important Men"; Trevor R. Getz; 978-0-19-984439-5}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Colonial Africa"; Dennis Laumann; 978-0-19-979639-7}|
+
+PRINTING VIA ISBN
+{"Abina and the Important Men"; Trevor R. Getz; 978-0-19-984439-5}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Colonial Africa"; Dennis Laumann; 978-0-19-979639-7}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Republican Protesntaism in Aztlan"; E.C.Orozco; 978-1-90053-6-32}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+
+{EMPTY}|
+{"Magic, Witchcraft, and Religion"; Arthur C. Lehmann; 0-07-312269-6}|
+{"Wheelock's Latin"; Frederic M. Wheelock; 978-0-06-199722-8}|
+{"Africa in World History"; Erik Gilbert; 978-0-205-05399-5}|
+{"Tastes of Paradise"; Wolfgang Schivelbusch; 978-0-679-74438-2}|
+{"Aftermath: The Remnants of War"; Donovan Webster; 978-0-679-75153}|
+{"The Unfinished Nation"; Alan Brinkley; 978-9-97-728635-4}|
+{"Colonial Africa"; Dennis Laumann; 978-0-19-979639-7}|
+{"Abina and the Important Men"; Trevor R. Getz; 978-0-19-984439-5}|
+{"Republican Protesntaism in Aztlan"; E.C.Orozco; 978-1-90053-6-32}|
+{EMPTY}|
+{EMPTY}|
+{EMPTY}|
+{EMPTY}|
+{EMPTY}|
+{EMPTY}|
+
+Press <RETURN> to close this window...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
