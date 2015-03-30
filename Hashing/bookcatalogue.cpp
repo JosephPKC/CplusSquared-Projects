@@ -6,7 +6,7 @@
 //List<std::size_t>* _aTable;
 //List<std::size_t>* _tTable;
 //List<std::size_t>* __iTable;
-using namespace std;
+//using namespace std;
 std::size_t BookCatalogue::firstAvailable(){
     for(std::size_t i = 0; i < (std::size_t)_capacity; i++)
         if(isVacant(i)) return i;
