@@ -1,0 +1,32 @@
+#ifndef INSERTIONSORTER_H
+#define INSERTIONSORTER_H
+#include "ContainerList.h"
+template <typename Item>
+class InsertionSorter : public ContainerList<Item>{
+private:
+    template <typename Item2>
+    void swap(Item2& a, Item2& b){
+        Item2 Temp = a;
+        a = b;
+        b = Temp;
+    }
+
+public:
+    InsertionSorter():ContainerList<Item>(){}
+    void sort(){
+        std::size_t j;
+        for(std::size_t i = 0; i < ContainerList<Item>::_size; i++){
+            j = i;
+            while(j > 0 && ContainerList<Item>::_data[j] < ContainerList<Item>::_data[j - 1]){
+                swap(ContainerList<Item>::_data[j],ContainerList<Item>::_data[j - 1]);
+                j--;
+            }
+        }
+    }
+
+
+
+
+};
+
+#endif // INSERTIONSORTER_H
