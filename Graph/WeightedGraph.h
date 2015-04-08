@@ -1,0 +1,4 @@
+#ifndef WEIGHTEDGRAPH_H
+#define WEIGHTEDGRAPH_H
+
+#endif // WEIGHTEDGRAPH_H

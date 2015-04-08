@@ -193,7 +193,7 @@ void BookCatalogue::print(std::string keyword){
     List<std::size_t>* table;
     if(keyword.compare(TITLE) == 0){
         table = _tTable;
-        cout << _tTable[0] << endl;
+//        cout << _tTable[0] << endl;
     }
     else if(keyword.compare(AUTHOR) == 0){
         table = _aTable;
