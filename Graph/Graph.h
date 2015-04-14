@@ -3,6 +3,10 @@
 #include <iostream>
 #include <set>
 #include <cassert>
+struct Path{
+
+};
+
 template <typename Item>
 class Graph{
 protected:
@@ -15,15 +19,40 @@ protected:
     std::size_t _vertices;
 protected:
     void reallocate(std::size_t nSize){
+        using namespace std;
+//        cout << "Size in reallocate:" << nSize << endl;
         bool** edgeTemp = _edges;
+//        for(std::size_t i = 0; i < size(); i++){
+//            for(int j = 0; j < size(); j++){
+//                cout << "Edge: " <<  edgeTemp[i][j] << endl;
+//            }
+//        }
+//        cout << "edgetemp" << endl;
         Item* labelTemp = _labels;
+//        cout << "labeltemp" << endl;
         allocate2D(_edges,nSize);
+//        cout << "allocated2d" << endl;
         allocate(_labels,nSize);
+//        cout << "allocated" << endl;
         initialize2D(_edges,nSize);
+//        cout << "initialized2d" << endl;
+//        for(std::size_t i = 0; i < size(); i++){
+//            for(int j = 0; j < size(); j++){
+//                cout << "Edge: " << edgeTemp[i][j] << endl;
+//            }
+//        }
+//        cout << "Old size: " << size() << endl;
         for(std::size_t i = 0; i < size(); i++){
-            copy(edgeTemp[i],_edges[i],size());
+            copyPtr(edgeTemp[i],_edges[i],size());
         }
-        copy(labelTemp,_labels,size());
+//        cout << "for end" << endl;
+        copyPtr(labelTemp,_labels,size());
+//        cout << "copyied" << endl;
+        for(std::size_t i = 0; i < size(); i++){
+            delete edgeTemp[i];
+        }
+        delete edgeTemp;
+        delete labelTemp;
         _allocated = nSize;
 
     }
@@ -51,11 +80,27 @@ protected:
         }
     }
     template <typename Type>
-    void copy(Type* source, Type* dest, std::size_t size){
+    void copyPtr(Type* source, Type* dest, std::size_t size){
+        using namespace std;
+//        cout << "in copyptr" << endl;
         for(std::size_t i = 0; i < size; ++i){
             dest[i] = source[i];
         }
+//        cout << "end copyptr" << endl;
     }
+
+    template <typename Process>
+    void dfs(Process f, std::size_t v, bool marked[]){
+        std::set<std::size_t> connections = neighbors(v);
+        std::set<std::size_t>::iterator it;
+        marked[v] = true;
+        f(g[v]);
+        for(it = connections.begin(); it != connections.end(); ++it){
+            if(!marked[*it])
+                dfs(f,*it,marked);
+        }
+    }
+
 
 public:
 //    static const std::size_t MAXIMUM = 30;
@@ -76,12 +121,17 @@ public:
     void addVertex(const Item& label){
         //If size() < MAXIMUM
         //Above should be false
+        using namespace std;
+//        cout << "Size: " << size() << endl;
         if(_allocated <= size()) resize(_allocated*2);
+//        cout << "After resize" << endl;
         std::size_t newVertex = _vertices++;
+//        cout << "after new vertex" << endl;
         for(std::size_t other = 0; other < _vertices; ++other){
             _edges[other][newVertex] = false;
             _edges[newVertex][other] = false;
         }
+//        cout << "for loop end" << endl;
         _labels[newVertex] = label;
     }
 
@@ -103,12 +153,18 @@ public:
     void resize(std::size_t size){
         //If size < allocated
         //Above should be false
-        for(std::size_t i = 0; i < _vertices; ++i){
-            delete[] _edges[i];
-        }
-        delete _edges;
-        delete _labels;
+        using namespace std;
+//        cout << "in resize" << endl;
+//        for(std::size_t i = 0; i < _vertices; ++i){
+//            delete[] _edges[i];
+//        }
+//        cout << "for loop end" << endl;
+//        delete _edges;
+//        cout << "deleted edges" << endl;
+//        delete _labels;
+//        cout << "deleted labels" << endl;
         reallocate(size);
+//        cout << "reallocated" << endl;
     }
 
     Item& operator [](std::size_t vertex){
@@ -157,6 +213,37 @@ public:
         return out;
     }
 
+    template <typename Process>
+    void depthFirst(Process f, std::size_t start){
+        bool marked[_allocated];
+        assert(start < size());
+        std::fill_n(marked,size(),false);
+        dfs(f,start,marked);
+    }
+
+    template <typename Process>
+    void breadthFirst(Process f, std::size_t start){
+        bool marked[_allocated];
+        std::set<std::size_t> connections;
+        std::set<std::size_t>::iterator it;
+        std::queue<std::size_t> vQ;
+        assert(start < size());
+        std::fill_n(maarked,size(),false);
+        marked[start] = true;
+        f(g[start]);
+        vQ.push(start);
+        do{
+            connections = neighbors(vQ.front());
+            vQ.pop();
+            for(it = connections.begin(); it != connections.end(); ++it){
+                if(!marked[*it]){
+                    marked[*it] = true;
+                    f(g[*it]);
+                    vQ.push(*it);
+                }
+            }
+        } while(!vQ.empty());
+    }
 };
 
 #endif // GRAPH_H
