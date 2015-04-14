@@ -46,6 +46,18 @@ public:
         }
         return out;
     }
+    std::size_t length(){
+        int i = 0;
+        if(Empty()) return i; //If empty, return 0
+        Iterator<T> walker = begin(); //Beginning
+        Iterator<T> e = end(); //End
+        e++; //Go to NULL
+        while(walker != e){
+            i++;
+            walker++;
+        }
+        return i;
+    }
 
     Iterator<T> insertH(const T& item){
         Iterator<T> Temp(insertHead(head,item));

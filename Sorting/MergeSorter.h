@@ -1,44 +1,37 @@
 #ifndef MERGESORTER_H
 #define MERGESORTER_H
 #include "ContainerList.h"
+//Merge sorts the list
 template <typename Item>
 class MergeSorter:public ContainerList<Item>{
 private:
-    std::size_t length(const List<Item>& L){
-        int i = 0;
-        if(L.Empty()) return i;
-        Iterator<Item> walker = L.begin();
-        Iterator<Item> end = L.end();
-        end++;
-        while(walker != end){
-            i++;
-            walker++;
-        }
-        return i;
-    }
+    //List length
 
+
+    //MergeSorts the List (Recursive Function)
     List<Item> mergeSort(List<Item> L){
-        if(length(L) <= 1) return L;
-        std::size_t middle = length(L) / 2;
+        if(L.length() <= 1) return L; //If the list has 1 or no elements, then it is sorted
+        std::size_t middle = L.length() / 2; //Find the middle index
         List<Item> Left;
         List<Item> Right;
-        for(std::size_t i = 0; i < middle; i++)
+        for(std::size_t i = 0; i < middle; i++) //Separate into Left and Right
             Left.insertE(L[i]);
-        for(std::size_t i = middle; i < length(L); i++)
+        for(std::size_t i = middle; i < L.length(); i++)
             Right.insertE(L[i]);
-        Left = mergeSort(Left);
+        Left = mergeSort(Left); //Merge Sort the Left and Right
         Right = mergeSort(Right);
-        if(*Left.end() <= *Right.begin()){
-            Left += Right;
-            return Left;
-        }
-        List<Item> Result = merge(Left,Right);
+        if(*Left.end() <= *Right.begin()){ //Merge Left and Right back to together
+            Left += Right; //Since both Left and Right are sorted by now, Right.begin should have the
+            return Left; //smallest in Right and Left.end should have the largest in Left
+        }                //By appending them, the entire thing should be sorted
+        List<Item> Result = merge(Left,Right); //If not we have to merge them carefully
         return Result;
     }
+    //Merges two lists together so that it is sorted
     List<Item> merge(List<Item>& L, List<Item>& R){
         List<Item> Result;
-        while((length(L) > 0) && (length(R) > 0)){
-            if(*L.begin() <= *R.begin()){
+        while((L.length() > 0) && (R.length() > 0)){ //Go through both lists until one of them ends
+            if(*L.begin() <= *R.begin()){ //Move one value of the list to the other
                 Result.insertE(*L.begin());
                 L.deleteAt(L.begin());
             }
@@ -47,26 +40,18 @@ private:
                 R.deleteAt(R.begin());
             }
         }
-        if(length(L) > 0)
+        if(L.length() > 0) //For the remaining elements
             Result += L;
-        if(length(R) > 0)
+        if(R.length() > 0)
             Result += R;
         return Result;
     }
 
 public:
     MergeSorter():ContainerList<Item>(){}
+    MergeSorter(const List<Item>& L):ContainerList<Item>(L){}
+    //Sorts, just calls mergesort
     void sort(){
-        //If the size is 1 or 0, then it is already sorted
-        //else:
-        //Find the middle index of the list
-        //split the list into two smaller lists (a new recursive function(list, begin, end))
-        //Now in the smaller lists do the same.....
-        //If there is only one element, then it is sorted
-        //If there is two elements, then swap so that it may be sorted
-        //If there are no elements then ???
-        //Once the left and rights are sorted, check which one is bigger
-        //Merge the left and right and go up one level
         ContainerList<Item>::_data = mergeSort(ContainerList<Item>::_data);
     }
 

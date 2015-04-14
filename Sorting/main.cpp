@@ -46,8 +46,70 @@ void testMerge(){
 
 int main()
 {
-    testInsertion();
-    testMerge();
+//    testInsertion();
+//    testMerge();
+    int num;
+    char choice;
+    List<int> L;
+    cout << "(A)dd number to list\n"
+         << "(R)eset list\n"
+         << "(S)ort list:\n"
+         << "   (I)nsertion\n"
+         << "   (M)erge\n";
+    while(true){
+
+        cin >> choice;
+        switch(choice){
+            case 'A':
+            case 'a':{
+//                if(cin >> choice){}
+
+                cin >> num;
+                L.insertE(num);
+                break;
+            }
+            case'R':
+            case'r':{
+                Iterator<int> walker = L.begin();
+                Iterator<int> end = ++L.end();
+                while(walker != end){
+                    L.remove(walker);
+                    walker++;
+                }
+                break;
+            }
+            case 'S':
+            case 's':{
+                cin >> choice;
+                if(tolower(choice) == 'i'){
+                    InsertionSorter<int> IS(L);
+                    IS.sort();
+                    L = IS.list();
+                }
+                else if(tolower(choice) == 'm'){
+                    MergeSorter<int> MS(L);
+                    MS.sort();
+                    L = MS.list();
+                }
+                else{
+                    cout << "NOPE" << endl;
+                }
+                break;
+            }
+            case 'X':
+            case 'x':{
+                exit(1);
+                break;
+            }
+            default:{
+                cout << "TRY AGAIN" << endl;
+                break;
+            }
+        }
+        cout << L << endl;
+
+    }
+
     return 0;
 }
 
