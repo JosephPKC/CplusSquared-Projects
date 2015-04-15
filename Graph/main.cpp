@@ -42,6 +42,21 @@ int main()
     LG.addEdge(0,1,13);
 //    cout << "eaa2" << endl;
     cout << LG << endl;
+
+    WeightedGraph<char> WG(2);
+    WG.addVertex('a');
+//    cout << "a" << endl;
+    WG.addVertex('b');
+//    cout << "b" << endl;
+    WG.addVertex('c');
+//    cout << "c" << endl;
+    WG.addVertex('d');
+//    cout << "d" << endl;
+    WG.addEdge(0,0,1);
+//    cout << "ea" << endl;
+    WG.addEdge(0,1,13);
+//    cout << "eaa2" << endl;
+    cout << WG << endl;
     return 0;
 }
 
